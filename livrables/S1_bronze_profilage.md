@@ -8,15 +8,104 @@ Rappel : un constat = un chiffre mesuré (règle, couche) + la preuve qui le rep
 
 | Source | Table | Lignes | Clé primaire | Observation chiffrée |
 |---|---|---|---|---|
-| crm | client | … | … | … |
-| crm | contrat | … | … | … |
-| crm | sinistre | … | … | … |
-| crm | type_contrat | … | … | … |
-| cif | clients | … | … | … |
-| cif | compte | … | … | … |
-| cif | pays | … | … | … |
+| crm | client | 100 000 | client_id | Clé unique, 0 doublon. 7 colonnes sur 13 ont des manques : 133 918 NULL, 2 400 vides et 2 000 blancs. Une grande partie des NULL est normale : 4 277 clients sont des entreprises, sans nom, prénom ni date de naissance. |
+| crm | contrat | 100 000 | contrat_id | Clé unique, 0 doublon. 1 colonne sur 9 a des manques : 7 460 NULL. |
+| crm | sinistre | 100 000 | sinistre_id | Clé unique, 0 doublon. 1 colonne sur 10 a des manques : 1 965 vides, 0 NULL. |
+| crm | type_contrat | 12 | code_type | Clé unique, 0 doublon. Petite table de référence, aucune valeur manquante. |
+| cif | clients | 40 000 | column0 | Clé unique, 0 doublon. 10 colonnes sans nom, toutes en texte. 4 colonnes sur 10 ont des manques : 26 486 NULL. |
+| cif | compte | 45 000 | column0 | Clé unique, 0 doublon. Aucune valeur manquante. 100 % des valeurs de column1 existent dans cif.clients.column0 : lien vers les clients, non déclaré. |
+| cif | pays | 250 | code_pays | Clé unique, 0 doublon. Aucune valeur manquante. Les 250 codes sont tous dans silver.ref_pays. |
 
-Preuve (notebook, requête) : [À COMPLÉTER]
+Preuve : `notebooks/S1_US01_Fatine.ipynb` ; tableau dans `reports/S1_US01_inventaire.md`.
+
+|---|---|---|---|---|
+| crm | client | 100 000 | client_id | Clé unique, 0 doublon. 7 colonnes sur 13 ont des manques : 133 918 NULL, 2 400 vides et 2 000 blancs. Une grande partie des NULL est normale : 4 277 clients sont des entreprises, sans nom, prénom ni date de naissance. |
+| crm | contrat | 100 000 | contrat_id | Clé unique, 0 doublon. 1 colonne sur 9 a des manques : 7 460 NULL. |
+| crm | sinistre | 100 000 | sinistre_id | Clé unique, 0 doublon. 1 colonne sur 10 a des manques : 1 965 vides, 0 NULL. |
+| crm | type_contrat | 12 | code_type | Clé unique, 0 doublon. Petite table de référence, aucune valeur manquante. |
+| cif | clients | 40 000 | column0 | Clé unique, 0 doublon. 10 colonnes sans nom, toutes en texte. 4 colonnes sur 10 ont des manques : 26 486 NULL. |
+| cif | compte | 45 000 | column0 | Clé unique, 0 doublon. Aucune valeur manquante. 100 % des valeurs de column1 existent dans cif.clients.column0 : lien vers les clients, non déclaré. |
+| cif | pays | 250 | code_pays | Clé unique, 0 doublon. Aucune valeur manquante. Les 250 codes sont tous dans silver.ref_pays. |
+
+
+
+nes sur rande s nom, 
+onne sur 
+olonne 
+ table 
+es sans . |
+eur umn0 : 
+ 
+
+
+
+nes sur rande s nom, 
+onne sur 
+olonne 
+ table 
+es sans . |
+eur umn0 : 
+ 
+
+
+
+nes sur rande s nom, 
+onne sur 
+olonne 
+ table 
+es sans . |
+eur umn0 : 
+ 
+
+
+
+nes sur rande s nom, 
+onne sur 
+olonne 
+ table 
+es sans . |
+eur umn0 : 
+ 
+
+
+
+nes sur rande s nom, 
+onne sur 
+olonne 
+ table 
+es sans . |
+eur umn0 : 
+ 
+
+
+
+nes sur rande s nom, 
+onne sur 
+olonne 
+ table 
+es sans . |
+eur umn0 : 
+ 
+
+
+
+nes sur rande s nom, 
+onne sur 
+olonne 
+ table 
+es sans . |
+eur umn0 : 
+ 
+
+
+
+nes sur rande s nom, 
+onne sur 
+olonne 
+ table 
+es sans . |
+eur umn0 : 
+ 
 
 ## 2. Bronze et porte B (US-02, US-03)
 
