@@ -13,10 +13,10 @@ Mettez à jour ce tableau à chaque fin de séance (et dès qu'une story change 
 | S1 | US-06 | Profil de crm.client | Fait | reports/S1_profilage_crm_client.sql |Profilage de 100 000 clients |
 | S1 | US-07 | Motifs code postal, téléphone, pays | Fait | reports/S1_profilage_crm_client.sql |Contrôles téléphone, code postal et pays |
 | S1 | US-09 | Trois définitions du client actif | Fait | reports/S1_client_actif.sql |3 définitions comparées |
-| S2 | US-10 | Règles en tests Great Expectations | À faire | … | |
-| S2 | US-11 | Lignes en échec | À faire | … | |
-| S2 | US-13 | Âge à la date de début du contrat | À faire | … | |
-| S2 | US-15 | Mesure de référence sur bronze | À faire | … | |
+| S2 | US-10 | Règles en tests Great Expectations | Fait | `pipelines/S2_regles_great_expectations.py`, `reports/ge/gx/expectations/` | 8 règles, chaque expectation porte son rule_id |
+| S2 | US-11 | Lignes en échec | Fait | `reports/echecs/` (non versionné), `livrables/S2_regles_great_expectations.md` section 2 | 20 lignes RQ-009 classées en 4 familles |
+| S2 | US-13 | Âge à la date de début du contrat | Fait | `pipelines/S2_regles_great_expectations.py` (US-13) | 301 à la signature contre 157 à la date de référence |
+| S2 | US-15 | Mesure de référence sur bronze | Fait | `dq.dq_history`, couche BRONZE, lot L-2026-10-01 | complétude 88,0 %, 5 règles bloquantes sur 6 sous le seuil |
 | S3 | US-12 | Checks Soda, une source par couche | À faire | … | |
 | S3 | US-16 | Clés étrangères | À faire | … | |
 | S3 | US-17 | Valeur sentinelle | À faire | … | |
