@@ -1,0 +1,834 @@
+{
+ "batch_id": "L-2026-10-01",
+ "date_ref": "2026-10-01",
+ "cotisation_min": "2026-07-01",
+ "execute_le": "2026-10-14T14:22:43",
+ "us01_inventaire": [
+  {
+   "Source": "crm",
+   "Table": "client",
+   "Lignes": 100000,
+   "Colonnes": 13,
+   "Clé primaire": "client_id",
+   "Doublons de clé": 0,
+   "Observation chiffrée": "NULL : raison_sociale 95723 (95.7 %), email 19365 (19.4 %), telephone 5999 (6.0 %) ; doublons de clé : 0"
+  },
+  {
+   "Source": "crm",
+   "Table": "contrat",
+   "Lignes": 100000,
+   "Colonnes": 9,
+   "Clé primaire": "contrat_id",
+   "Doublons de clé": 0,
+   "Observation chiffrée": "NULL : date_derniere_cotisation 7460 (7.5 %) ; doublons de clé : 0"
+  },
+  {
+   "Source": "crm",
+   "Table": "sinistre",
+   "Lignes": 100000,
+   "Colonnes": 10,
+   "Clé primaire": "sinistre_id",
+   "Doublons de clé": 0,
+   "Observation chiffrée": "aucun NULL ; doublons de clé : 0"
+  },
+  {
+   "Source": "crm",
+   "Table": "type_contrat",
+   "Lignes": 12,
+   "Colonnes": 3,
+   "Clé primaire": "code_type",
+   "Doublons de clé": 0,
+   "Observation chiffrée": "aucun NULL ; doublons de clé : 0"
+  },
+  {
+   "Source": "cif",
+   "Table": "clients",
+   "Lignes": 40000,
+   "Colonnes": 10,
+   "Clé primaire": "column0",
+   "Doublons de clé": 0,
+   "Observation chiffrée": "NULL : column9 18872 (47.2 %), column8 6324 (15.8 %), column2 645 (1.6 %) ; doublons de clé : 0"
+  },
+  {
+   "Source": "cif",
+   "Table": "compte",
+   "Lignes": 45000,
+   "Colonnes": 4,
+   "Clé primaire": "column0",
+   "Doublons de clé": 0,
+   "Observation chiffrée": "aucun NULL ; doublons de clé : 0"
+  },
+  {
+   "Source": "cif",
+   "Table": "pays",
+   "Lignes": 250,
+   "Colonnes": 2,
+   "Clé primaire": "code_pays",
+   "Doublons de clé": 0,
+   "Observation chiffrée": "aucun NULL ; doublons de clé : 0"
+  }
+ ],
+ "us01_observations": [
+  {
+   "Observation": "contrat.assure_id = '0' (valeur sentinelle)",
+   "Valeur": 40000
+  },
+  {
+   "Observation": "contrat.souscripteur_id absent de crm.client",
+   "Valeur": 1000
+  },
+  {
+   "Observation": "contrat.code_type absent de type_contrat",
+   "Valeur": 200
+  },
+  {
+   "Observation": "sinistre.contrat_id absent de contrat",
+   "Valeur": 0
+  },
+  {
+   "Observation": "cif.compte.column1 absent de cif.clients.column0",
+   "Valeur": 0
+  },
+  {
+   "Observation": "crm.client : personnes morales (raison_sociale renseignée, nom NULL)",
+   "Valeur": 4277
+  }
+ ],
+ "us02_ingestion": [
+  {
+   "Table bronze": "crm_client",
+   "Lignes écrites": 100000,
+   "Lignes du lot remplacées": 0
+  },
+  {
+   "Table bronze": "crm_contrat",
+   "Lignes écrites": 100000,
+   "Lignes du lot remplacées": 0
+  },
+  {
+   "Table bronze": "crm_sinistre",
+   "Lignes écrites": 100000,
+   "Lignes du lot remplacées": 0
+  },
+  {
+   "Table bronze": "crm_type_contrat",
+   "Lignes écrites": 12,
+   "Lignes du lot remplacées": 0
+  },
+  {
+   "Table bronze": "cif_clients",
+   "Lignes écrites": 40000,
+   "Lignes du lot remplacées": 0
+  },
+  {
+   "Table bronze": "cif_compte",
+   "Lignes écrites": 45000,
+   "Lignes du lot remplacées": 0
+  },
+  {
+   "Table bronze": "cif_pays",
+   "Lignes écrites": 250,
+   "Lignes du lot remplacées": 0
+  }
+ ],
+ "us03_porte_b": [
+  {
+   "Table bronze": "crm_client",
+   "Lignes source": 100000,
+   "Lignes bronze": 100000,
+   "Écart de comptage": 0,
+   "Somme de contrôle source": 214528576956306,
+   "Somme de contrôle bronze": 214528576956306,
+   "Écart de somme de contrôle": 0,
+   "Lignes sans jumelle": 0,
+   "RQ-022 lignes sans métadonnées valides": 0,
+   "Porte B": "OK"
+  },
+  {
+   "Table bronze": "crm_contrat",
+   "Lignes source": 100000,
+   "Lignes bronze": 100000,
+   "Écart de comptage": 0,
+   "Somme de contrôle source": 214970337491057,
+   "Somme de contrôle bronze": 214970337491057,
+   "Écart de somme de contrôle": 0,
+   "Lignes sans jumelle": 0,
+   "RQ-022 lignes sans métadonnées valides": 0,
+   "Porte B": "OK"
+  },
+  {
+   "Table bronze": "crm_sinistre",
+   "Lignes source": 100000,
+   "Lignes bronze": 100000,
+   "Écart de comptage": 0,
+   "Somme de contrôle source": 214902603302661,
+   "Somme de contrôle bronze": 214902603302661,
+   "Écart de somme de contrôle": 0,
+   "Lignes sans jumelle": 0,
+   "RQ-022 lignes sans métadonnées valides": 0,
+   "Porte B": "OK"
+  },
+  {
+   "Table bronze": "crm_type_contrat",
+   "Lignes source": 12,
+   "Lignes bronze": 12,
+   "Écart de comptage": 0,
+   "Somme de contrôle source": 27536952762,
+   "Somme de contrôle bronze": 27536952762,
+   "Écart de somme de contrôle": 0,
+   "Lignes sans jumelle": 0,
+   "RQ-022 lignes sans métadonnées valides": 0,
+   "Porte B": "OK"
+  },
+  {
+   "Table bronze": "cif_clients",
+   "Lignes source": 40000,
+   "Lignes bronze": 40000,
+   "Écart de comptage": 0,
+   "Somme de contrôle source": 85973760448678,
+   "Somme de contrôle bronze": 85973760448678,
+   "Écart de somme de contrôle": 0,
+   "Lignes sans jumelle": 0,
+   "RQ-022 lignes sans métadonnées valides": 0,
+   "Porte B": "OK"
+  },
+  {
+   "Table bronze": "cif_compte",
+   "Lignes source": 45000,
+   "Lignes bronze": 45000,
+   "Écart de comptage": 0,
+   "Somme de contrôle source": 96842431909202,
+   "Somme de contrôle bronze": 96842431909202,
+   "Écart de somme de contrôle": 0,
+   "Lignes sans jumelle": 0,
+   "RQ-022 lignes sans métadonnées valides": 0,
+   "Porte B": "OK"
+  },
+  {
+   "Table bronze": "cif_pays",
+   "Lignes source": 250,
+   "Lignes bronze": 250,
+   "Écart de comptage": 0,
+   "Somme de contrôle source": 529205112408,
+   "Somme de contrôle bronze": 529205112408,
+   "Écart de somme de contrôle": 0,
+   "Lignes sans jumelle": 0,
+   "RQ-022 lignes sans métadonnées valides": 0,
+   "Porte B": "OK"
+  }
+ ],
+ "epreuve1_relance": [
+  {
+   "Table bronze": "crm_client",
+   "Lignes du lot avant relance": 100000,
+   "Après relance": 100000,
+   "Lignes créées par la relance": 0,
+   "Empreintes en double dans le lot": "0",
+   "dont doublons déjà présents en source": "0"
+  },
+  {
+   "Table bronze": "crm_contrat",
+   "Lignes du lot avant relance": 100000,
+   "Après relance": 100000,
+   "Lignes créées par la relance": 0,
+   "Empreintes en double dans le lot": "0",
+   "dont doublons déjà présents en source": "0"
+  },
+  {
+   "Table bronze": "crm_sinistre",
+   "Lignes du lot avant relance": 100000,
+   "Après relance": 100000,
+   "Lignes créées par la relance": 0,
+   "Empreintes en double dans le lot": "0",
+   "dont doublons déjà présents en source": "0"
+  },
+  {
+   "Table bronze": "crm_type_contrat",
+   "Lignes du lot avant relance": 12,
+   "Après relance": 12,
+   "Lignes créées par la relance": 0,
+   "Empreintes en double dans le lot": "0",
+   "dont doublons déjà présents en source": "0"
+  },
+  {
+   "Table bronze": "cif_clients",
+   "Lignes du lot avant relance": 40000,
+   "Après relance": 40000,
+   "Lignes créées par la relance": 0,
+   "Empreintes en double dans le lot": "0",
+   "dont doublons déjà présents en source": "0"
+  },
+  {
+   "Table bronze": "cif_compte",
+   "Lignes du lot avant relance": 45000,
+   "Après relance": 45000,
+   "Lignes créées par la relance": 0,
+   "Empreintes en double dans le lot": "0",
+   "dont doublons déjà présents en source": "0"
+  },
+  {
+   "Table bronze": "cif_pays",
+   "Lignes du lot avant relance": 250,
+   "Après relance": 250,
+   "Lignes créées par la relance": 0,
+   "Empreintes en double dans le lot": "0",
+   "dont doublons déjà présents en source": "0"
+  }
+ ],
+ "epreuve2_ecart_volontaire": {
+  "Table bronze": "epreuve_crm_client",
+  "Lignes source": 100000,
+  "Lignes bronze": 99999,
+  "Écart de comptage": -1,
+  "Somme de contrôle source": 214528576956306,
+  "Somme de contrôle bronze": 214524096630065,
+  "Écart de somme de contrôle": -4480326241,
+  "Lignes sans jumelle": 3,
+  "RQ-022 lignes sans métadonnées valides": 1,
+  "Porte B": "ÉCHEC"
+ },
+ "epreuve3_conversion": [
+  {
+   "Table": "crm.client",
+   "Colonne": "nom",
+   "Cellules altérées": 4277,
+   "Valeur source (\\N = NULL)": "\\N",
+   "Lecture naïve": "None"
+  },
+  {
+   "Table": "crm.client",
+   "Colonne": "prenom",
+   "Cellules altérées": 4277,
+   "Valeur source (\\N = NULL)": "\\N",
+   "Lecture naïve": "None"
+  },
+  {
+   "Table": "crm.client",
+   "Colonne": "raison_sociale",
+   "Cellules altérées": 95723,
+   "Valeur source (\\N = NULL)": "\\N",
+   "Lecture naïve": "None"
+  },
+  {
+   "Table": "crm.client",
+   "Colonne": "date_naissance",
+   "Cellules altérées": 4277,
+   "Valeur source (\\N = NULL)": "\\N",
+   "Lecture naïve": "None"
+  },
+  {
+   "Table": "crm.client",
+   "Colonne": "telephone",
+   "Cellules altérées": 5999,
+   "Valeur source (\\N = NULL)": "\\N",
+   "Lecture naïve": "None"
+  },
+  {
+   "Table": "crm.client",
+   "Colonne": "email",
+   "Cellules altérées": 19365,
+   "Valeur source (\\N = NULL)": "\\N",
+   "Lecture naïve": "None"
+  },
+  {
+   "Table": "crm.contrat",
+   "Colonne": "prime_annuelle",
+   "Cellules altérées": 9912,
+   "Valeur source (\\N = NULL)": "184.10",
+   "Lecture naïve": "184.1"
+  },
+  {
+   "Table": "crm.contrat",
+   "Colonne": "date_derniere_cotisation",
+   "Cellules altérées": 7460,
+   "Valeur source (\\N = NULL)": "\\N",
+   "Lecture naïve": "None"
+  },
+  {
+   "Table": "crm.sinistre",
+   "Colonne": "montant_estime",
+   "Cellules altérées": 10083,
+   "Valeur source (\\N = NULL)": "1007.80",
+   "Lecture naïve": "1007.8"
+  },
+  {
+   "Table": "cif.clients",
+   "Colonne": "column2",
+   "Cellules altérées": 645,
+   "Valeur source (\\N = NULL)": "\\N",
+   "Lecture naïve": "None"
+  },
+  {
+   "Table": "cif.clients",
+   "Colonne": "column3",
+   "Cellules altérées": 645,
+   "Valeur source (\\N = NULL)": "\\N",
+   "Lecture naïve": "None"
+  },
+  {
+   "Table": "cif.clients",
+   "Colonne": "column8",
+   "Cellules altérées": 6324,
+   "Valeur source (\\N = NULL)": "\\N",
+   "Lecture naïve": "None"
+  },
+  {
+   "Table": "cif.clients",
+   "Colonne": "column9",
+   "Cellules altérées": 18872,
+   "Valeur source (\\N = NULL)": "\\N",
+   "Lecture naïve": "None"
+  }
+ ],
+ "us06_profil": [
+  {
+   "Colonne": "client_id",
+   "Lignes": 100000,
+   "nuls": 0,
+   "vides": 0,
+   "blancs": 0,
+   "espaces_parasites": 0,
+   "distincts": 100000,
+   "lg_min": 6,
+   "lg_max": 7,
+   "% nuls": 0.0
+  },
+  {
+   "Colonne": "type_personne",
+   "Lignes": 100000,
+   "nuls": 0,
+   "vides": 0,
+   "blancs": 0,
+   "espaces_parasites": 0,
+   "distincts": 8,
+   "lg_min": 6,
+   "lg_max": 12,
+   "% nuls": 0.0
+  },
+  {
+   "Colonne": "nom",
+   "Lignes": 100000,
+   "nuls": 4277,
+   "vides": 0,
+   "blancs": 0,
+   "espaces_parasites": 0,
+   "distincts": 784,
+   "lg_min": 3,
+   "lg_max": 9,
+   "% nuls": 4.28
+  },
+  {
+   "Colonne": "prenom",
+   "Lignes": 100000,
+   "nuls": 4277,
+   "vides": 0,
+   "blancs": 0,
+   "espaces_parasites": 0,
+   "distincts": 293,
+   "lg_min": 2,
+   "lg_max": 10,
+   "% nuls": 4.28
+  },
+  {
+   "Colonne": "raison_sociale",
+   "Lignes": 100000,
+   "nuls": 95723,
+   "vides": 0,
+   "blancs": 0,
+   "espaces_parasites": 0,
+   "distincts": 3229,
+   "lg_min": 12,
+   "lg_max": 27,
+   "% nuls": 95.72
+  },
+  {
+   "Colonne": "date_naissance",
+   "Lignes": 100000,
+   "nuls": 4277,
+   "vides": 0,
+   "blancs": 0,
+   "espaces_parasites": 0,
+   "distincts": 28413,
+   "lg_min": 10,
+   "lg_max": 10,
+   "% nuls": 4.28
+  },
+  {
+   "Colonne": "adresse",
+   "Lignes": 100000,
+   "nuls": 0,
+   "vides": 0,
+   "blancs": 0,
+   "espaces_parasites": 0,
+   "distincts": 7561,
+   "lg_min": 10,
+   "lg_max": 31,
+   "% nuls": 0.0
+  },
+  {
+   "Colonne": "cp",
+   "Lignes": 100000,
+   "nuls": 0,
+   "vides": 0,
+   "blancs": 0,
+   "espaces_parasites": 0,
+   "distincts": 230,
+   "lg_min": 4,
+   "lg_max": 8,
+   "% nuls": 0.0
+  },
+  {
+   "Colonne": "ville",
+   "Lignes": 100000,
+   "nuls": 0,
+   "vides": 0,
+   "blancs": 0,
+   "espaces_parasites": 0,
+   "distincts": 172,
+   "lg_min": 3,
+   "lg_max": 24,
+   "% nuls": 0.0
+  },
+  {
+   "Colonne": "pays",
+   "Lignes": 100000,
+   "nuls": 0,
+   "vides": 400,
+   "blancs": 0,
+   "espaces_parasites": 0,
+   "distincts": 18,
+   "lg_min": 0,
+   "lg_max": 6,
+   "% nuls": 0.0
+  },
+  {
+   "Colonne": "telephone",
+   "Lignes": 100000,
+   "nuls": 5999,
+   "vides": 2000,
+   "blancs": 2000,
+   "espaces_parasites": 0,
+   "distincts": 88702,
+   "lg_min": 0,
+   "lg_max": 17,
+   "% nuls": 6.0
+  },
+  {
+   "Colonne": "email",
+   "Lignes": 100000,
+   "nuls": 19365,
+   "vides": 0,
+   "blancs": 0,
+   "espaces_parasites": 0,
+   "distincts": 77795,
+   "lg_min": 13,
+   "lg_max": 36,
+   "% nuls": 19.36
+  },
+  {
+   "Colonne": "date_creation",
+   "Lignes": 100000,
+   "nuls": 0,
+   "vides": 0,
+   "blancs": 0,
+   "espaces_parasites": 0,
+   "distincts": 5391,
+   "lg_min": 10,
+   "lg_max": 10,
+   "% nuls": 0.0
+  }
+ ],
+ "us06_constats": [
+  {
+   "Colonne": "type_personne",
+   "Indicateur": "hors domaine {prospect, souscripteur, assure} (NULL inclus)",
+   "Valeur": 200
+  },
+  {
+   "Colonne": "telephone",
+   "Indicateur": "NULL / vide / blanc",
+   "Valeur": "5999 / 2000 / 2000"
+  },
+  {
+   "Colonne": "nom / raison_sociale",
+   "Indicateur": "personnes morales (nom NULL, raison_sociale renseignée)",
+   "Valeur": 4277
+  },
+  {
+   "Colonne": "nom / raison_sociale",
+   "Indicateur": "ni nom ni raison sociale",
+   "Valeur": 0
+  },
+  {
+   "Colonne": "date_naissance",
+   "Indicateur": "personnes physiques sans date de naissance",
+   "Valeur": 0
+  },
+  {
+   "Colonne": "date_naissance",
+   "Indicateur": "min / max",
+   "Valeur": "1938-04-11 / 2026-07-13"
+  },
+  {
+   "Colonne": "date_naissance",
+   "Indicateur": "postérieure à la date de référence 2026-10-01 ou avant 1900",
+   "Valeur": 0
+  },
+  {
+   "Colonne": "client_id",
+   "Indicateur": "hors motif ^[AHS]-[0-9]+$",
+   "Valeur": 0
+  },
+  {
+   "Colonne": "pays",
+   "Indicateur": "valeurs distinctes (NULL exclu)",
+   "Valeur": 18
+  },
+  {
+   "Colonne": "email",
+   "Indicateur": "renseigné mais hors motif simple x@y.zz",
+   "Valeur": 1210
+  },
+  {
+   "Colonne": "nom + prenom + date_naissance",
+   "Indicateur": "lignes en double, NULL écartés (personnes physiques)",
+   "Valeur": "738"
+  },
+  {
+   "Colonne": "nom + prenom + date_naissance",
+   "Indicateur": "même calcul SANS écarter les NULL (piège : les personnes morales se comptent entre elles)",
+   "Valeur": 5014
+  }
+ ],
+ "us07_motifs": [
+  {
+   "Attribut": "Code postal (RQ-005)",
+   "Motif testé": "^[0-9]{5}$, pays = 'FR' exactement",
+   "Périmètre (lignes)": 95437,
+   "Conformes": 93981,
+   "Non conformes": 1456,
+   "% conformes": 98.47,
+   "Exemples non conformes (fréquence)": "[1000] ×92; [1100] ×77; [1360] ×74"
+  },
+  {
+   "Attribut": "Code postal",
+   "Motif testé": "^[0-9]{5}$, adresse en France (FR, France, fr après TRIM/UPPER)",
+   "Périmètre (lignes)": 97037,
+   "Conformes": 95559,
+   "Non conformes": 1478,
+   "% conformes": 98.48,
+   "Exemples non conformes (fréquence)": "[1000] ×92; [1100] ×78; [1360] ×75"
+  },
+  {
+   "Attribut": "Code postal",
+   "Motif testé": "^[0-9]{5}$, toutes adresses",
+   "Périmètre (lignes)": 100000,
+   "Conformes": 97683,
+   "Non conformes": 2317,
+   "% conformes": 97.68,
+   "Exemples non conformes (fréquence)": "[1000] ×199; [SW1A 1AA] ×125; [1009] ×125"
+  },
+  {
+   "Attribut": "Téléphone (brut)",
+   "Motif testé": "^0[1-9][0-9]{8}$, adresse en France",
+   "Périmètre (lignes)": 97037,
+   "Conformes": 65495,
+   "Non conformes": 31542,
+   "% conformes": 67.49,
+   "Exemples non conformes (fréquence)": "[NULL] ×5820; [   ] ×1945; [] ×1936"
+  },
+  {
+   "Attribut": "Téléphone (normalisé)",
+   "Motif testé": "^0[1-9][0-9]{8}$ après nettoyage, adresse en France",
+   "Périmètre (lignes)": 97037,
+   "Conformes": 86470,
+   "Non conformes": 10567,
+   "% conformes": 89.11,
+   "Exemples non conformes (fréquence)": "[NULL] ×5820; [   ] ×1945; [] ×1936"
+  },
+  {
+   "Attribut": "Pays (format)",
+   "Motif testé": "^[A-Z]{2}$",
+   "Périmètre (lignes)": 100000,
+   "Conformes": 97000,
+   "Non conformes": 3000,
+   "% conformes": 97.0,
+   "Exemples non conformes (fréquence)": "[France] ×1200; [F] ×600; [fr] ×400"
+  },
+  {
+   "Attribut": "Pays (référentiel)",
+   "Motif testé": "code présent dans silver.ref_pays",
+   "Périmètre (lignes)": 100000,
+   "Conformes": 96950,
+   "Non conformes": 3050,
+   "% conformes": 96.95,
+   "Exemples non conformes (fréquence)": "[France] ×1200; [F] ×600; [Frnace] ×400"
+  }
+ ],
+ "us07_detail_cp": [
+  {
+   "Code postal, adresse en France": "NULL",
+   "Lignes": 0
+  },
+  {
+   "Code postal, adresse en France": "vide ou blanc",
+   "Lignes": 0
+  },
+  {
+   "Code postal, adresse en France": "4 chiffres (zéro initial perdu ?)",
+   "Lignes": 1478
+  },
+  {
+   "Code postal, adresse en France": "autre format",
+   "Lignes": 0
+  }
+ ],
+ "us04_dictionnaire": [
+  {
+   "Table": "cif.clients",
+   "Colonne d'origine": "column0",
+   "Nom proposé": "id_cif",
+   "Type": "VARCHAR(10) (clé)",
+   "Justification chiffrée": "100.0 % de valeurs uniques, 40000 distincts, longueur 7-7, aucun format métier reconnu",
+   "% NULL ou vide": 0.0
+  },
+  {
+   "Table": "cif.clients",
+   "Colonne d'origine": "column1",
+   "Nom proposé": "nom_ou_raison_sociale",
+   "Type": "VARCHAR",
+   "Justification chiffrée": "99.6 % alphabétique, 731 distincts ; recouvrement avec crm.client : nom ou raison sociale 98.4 %, prenom 11.6 %, ville 0.8 %",
+   "% NULL ou vide": 0.0
+  },
+  {
+   "Table": "cif.clients",
+   "Colonne d'origine": "column2",
+   "Nom proposé": "prenom",
+   "Type": "VARCHAR",
+   "Justification chiffrée": "100.0 % alphabétique, 180 distincts ; recouvrement avec crm.client : nom ou raison sociale 17.9 %, prenom 100.0 %, ville 0.0 %",
+   "% NULL ou vide": 1.6
+  },
+  {
+   "Table": "cif.clients",
+   "Colonne d'origine": "column3",
+   "Nom proposé": "date_naissance",
+   "Type": "DATE (texte JJ/MM/AAAA à convertir)",
+   "Justification chiffrée": "100.0 % au format JJ/MM/AAAA, années 1938 à 2026",
+   "% NULL ou vide": 1.6
+  },
+  {
+   "Table": "cif.clients",
+   "Colonne d'origine": "column4",
+   "Nom proposé": "adresse",
+   "Type": "VARCHAR(255)",
+   "Justification chiffrée": "100.0 % commencent par un numéro suivi d'un libellé de voie",
+   "% NULL ou vide": 0.0
+  },
+  {
+   "Table": "cif.clients",
+   "Colonne d'origine": "column5",
+   "Nom proposé": "code_postal",
+   "Type": "CHAR(5)",
+   "Justification chiffrée": "99.1 % de valeurs à 5 chiffres, 188 distincts",
+   "% NULL ou vide": 0.0
+  },
+  {
+   "Table": "cif.clients",
+   "Colonne d'origine": "column6",
+   "Nom proposé": "ville",
+   "Type": "VARCHAR",
+   "Justification chiffrée": "100.0 % alphabétique, 172 distincts ; recouvrement avec crm.client : nom ou raison sociale 0.4 %, prenom 0.0 %, ville 83.3 %",
+   "% NULL ou vide": 0.0
+  },
+  {
+   "Table": "cif.clients",
+   "Colonne d'origine": "column7",
+   "Nom proposé": "code_pays",
+   "Type": "CHAR(2)",
+   "Justification chiffrée": "100.0 % de codes à 2 majuscules, 100.0 % présents dans cif.pays, 9 distincts",
+   "% NULL ou vide": 0.0
+  },
+  {
+   "Table": "cif.clients",
+   "Colonne d'origine": "column8",
+   "Nom proposé": "telephone",
+   "Type": "VARCHAR(20)",
+   "Justification chiffrée": "100.0 % de valeurs numériques de 9 caractères ou plus, 100.0 % au format 0X XX XX XX XX",
+   "% NULL ou vide": 15.8
+  },
+  {
+   "Table": "cif.clients",
+   "Colonne d'origine": "column9",
+   "Nom proposé": "email",
+   "Type": "VARCHAR(150)",
+   "Justification chiffrée": "100.0 % au motif x@y.zz",
+   "% NULL ou vide": 47.2
+  },
+  {
+   "Table": "cif.compte",
+   "Colonne d'origine": "column0",
+   "Nom proposé": "id_compte",
+   "Type": "VARCHAR (clé primaire)",
+   "Justification chiffrée": "100.0 % de valeurs uniques, longueur 10-10",
+   "% NULL ou vide": 0.0
+  },
+  {
+   "Table": "cif.compte",
+   "Colonne d'origine": "column1",
+   "Nom proposé": "id_cif",
+   "Type": "VARCHAR (clé étrangère vers cif.clients.column0)",
+   "Justification chiffrée": "100.0 % des valeurs existent dans cif.clients.column0 ; 88.9 % uniques (plusieurs comptes par client)",
+   "% NULL ou vide": 0.0
+  },
+  {
+   "Table": "cif.compte",
+   "Colonne d'origine": "column2",
+   "Nom proposé": "date_ouverture",
+   "Type": "DATE",
+   "Justification chiffrée": "100.0 % au format AAAA-MM-JJ, de 2005-01-01 à 2026-09-30",
+   "% NULL ou vide": 0.0
+  },
+  {
+   "Table": "cif.compte",
+   "Colonne d'origine": "column3",
+   "Nom proposé": "statut",
+   "Type": "CHAR(1)",
+   "Justification chiffrée": "100.0 % d'un seul caractère ; domaine : O=39611, F=5389",
+   "% NULL ou vide": 0.0
+  }
+ ],
+ "us09_client_actif": [
+  {
+   "Direction": "Commerciale",
+   "Définition utilisée": "au moins un contrat (quel que soit son état)",
+   "Nombre de clients": 50508,
+   "Écart avec CD-001": 12459,
+   "Dans la direction mais pas CD-001": 12459,
+   "Dans CD-001 mais pas la direction": 0,
+   "Rapport à la plus large": 1.0
+  },
+  {
+   "Direction": "Sinistres",
+   "Définition utilisée": "un contrat en cours à la date de référence (début ≤ date ≤ fin)",
+   "Nombre de clients": 44116,
+   "Écart avec CD-001": 6067,
+   "Dans la direction mais pas CD-001": 6067,
+   "Dans CD-001 mais pas la direction": 0,
+   "Rapport à la plus large": 0.873
+  },
+  {
+   "Direction": "Risques",
+   "Définition utilisée": "CD-001 : un contrat en cours ET une cotisation à jour sur les trois derniers mois",
+   "Nombre de clients": 38049,
+   "Écart avec CD-001": 0,
+   "Dans la direction mais pas CD-001": 0,
+   "Dans CD-001 mais pas la direction": 0,
+   "Rapport à la plus large": 0.753
+  }
+ ],
+ "us09_requetes": {
+  "Commerciale": "SELECT DISTINCT c.souscripteur_id id FROM crm.contrat c WHERE c.souscripteur_id IS NOT NULL AND :d = :d AND :m = :m",
+  "Sinistres": "SELECT DISTINCT c.souscripteur_id id FROM crm.contrat c WHERE c.souscripteur_id IS NOT NULL AND c.date_debut <= :d AND c.date_fin >= :d AND :m = :m",
+  "Risques": "SELECT DISTINCT c.souscripteur_id id FROM crm.contrat c WHERE c.souscripteur_id IS NOT NULL AND c.date_debut <= :d AND c.date_fin >= :d AND c.date_derniere_cotisation >= :m"
+ }
+}
