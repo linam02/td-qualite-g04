@@ -31,3 +31,16 @@ WHERE c.date_debut <= '2026-10-01'
   AND (c.date_fin IS NULL OR c.date_fin >= '2026-10-01')
   AND s.date_declaration > '2025-10-01'
   AND s.date_declaration <= '2026-10-01';
+
+
+-- Définition officielle CD-001 / RQ-018
+-- Date de référence : 2026-10-01
+-- Résultat observé : 38049 clients actifs
+
+SELECT COUNT(DISTINCT souscripteur_id) AS clients_actifs_cd001
+FROM crm.contrat
+WHERE date_debut <= '2026-10-01'
+  AND (date_fin IS NULL OR date_fin >= '2026-10-01')
+  AND date_derniere_cotisation BETWEEN
+      DATE_SUB('2026-10-01', INTERVAL 3 MONTH)
+      AND '2026-10-01';
