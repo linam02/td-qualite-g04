@@ -1,6 +1,6 @@
 # Avancement du groupe
 
-Groupe : [À COMPLÉTER]
+Groupe : 04
 
 Mettez à jour ce tableau à chaque fin de séance (et dès qu'une story change d'état). Statut : `À faire`, `En cours`, `Fait`, `Bloqué`. La preuve est un chemin du dépôt (notebook, fichier de checks, requête) ou une commande ; pas de preuve, pas de `Fait`.
 
@@ -8,9 +8,9 @@ Mettez à jour ce tableau à chaque fin de séance (et dès qu'une story change 
 |---|---|---|---|---|---|
 | S1 | US-01 | Inventorier les sources | À faire | … | |
 | S1 | US-02 | Alimenter bronze | À faire | … | |
-| S1 | US-03 | Porte B : réconcilier source et bronze | À faire | … | |
+| S1 | US-03 | Porte B : réconcilier source et bronze | Fait | `notebooks/S1_bronze_profilage.ipynb` cellule US-03 ; `dq.dq_history` (RQ-021, RQ-022) | 0 écart sur 7 tables ; écart volontaire détecté (1 puis 2) |
 | S1 | US-04 | Dictionnaire du CIF | À faire | … | |
-| S1 | US-06 | Profil de crm.client | À faire | … | |
+| S1 | US-06 | Profil de crm.client | Fait | `notebooks/S1_bronze_profilage.ipynb` cellule US-06 ; `reports/ydata_profiling_client.html` | 5 constats chiffrés (livrable S1, section 3) |
 | S1 | US-07 | Motifs code postal, téléphone, pays | À faire | … | |
 | S1 | US-09 | Trois définitions du client actif | À faire | … | |
 | S2 | US-10 | Règles en tests Great Expectations | À faire | … | |
