@@ -3,21 +3,14 @@
 Une ligne par décision de seuil, de sévérité, de définition ou de règle de survie. Une décision sans rôle ni justification chiffrée n'est pas une décision. Ce journal alimente la partie « La décision » du dossier go/no-go.
 
 | N° | Date | Séance | Règle ou objet | Décision (ce qui est arrêté) | Justification chiffrée (preuve) | Rôle décideur | Alternative écartée |
-# Journal des décisions
-
-Une ligne par décision de seuil, de sévérité, de définition ou de règle de survie. Une décision sans rôle ni justification chiffrée n'est pas une décision. Ce journal alimente la partie « La décision » du dossier go/no-go.
-
-| N° | Date | Séance | Règle ou objet | Décision (ce qui est arrêté) | Justification chiffrée (preuve) | Rôle décideur | Alternative écartée |
 |---|---|---|---|---|---|---|---|
 | 1 | 14/10/2026 | S1 | Lot d'ingestion bronze | Le lot de référence est `L-2026-10-01` (date de référence 01/10/2026, comme `pipelines/aq.py`). Le lot d'essai `L-2026-10-14` est supprimé de bronze, de `dq.dq_history` et de `dq.lot_ingestion`, puis le bon lot est réingéré par `pipelines/S1_g04_mesures.py` | Deux lots coexistants doublaient bronze (200 000 lignes au lieu de 100 000 dans crm_client) et faussaient les scripts qui lisent bronze sans filtre de lot ; après réingestion : porte B à 0 écart sur les 7 tables, RQ-005 = 1 456 écarts sur 95 437 (`reports/s1/S1_resultats.md`) | Ingénieur qualité (Amadou Macka Diallo) | Conserver les deux lots et filtrer partout par `_batch_id` : écarté, car les scripts de référence S1 à S5 ne filtrent pas tous |
-| 2 | … | … | … | … | … | … | … |
-| 3 | … | … | … | … | … | … | … |
-| 4 | … | … | … | … | … | … | … |
-| 5 | … | … | … | … | … | … | … |
+| 2 | 21/10/2026 | S2 | Sévérités RQ-001, 002, 003, 005, 007, 009, 010, 020 | Sévérités de `dq.regle` confirmées sans changement : bloquantes RQ-001, 002, 007, 009, 010, 020 ; avertissement RQ-003 et RQ-005 (seuil 98 %) | Mesures bronze L-2026-10-01 (`pipelines/S2_regles_great_expectations.py`) : RQ-003 à 87,998 % reste un avertissement car le client reste joignable autrement ; RQ-005 à 98,474 % est corrigeable en silver | Data Steward (Amadou Macka Diallo) | Rendre RQ-003 bloquante : écarté, cela rejetterait 5 989 souscripteurs valides par ailleurs |
+| 3 | 21/10/2026 | S2 | RQ-009 : correction de type_personne | En silver : casse et accent normalisés (`Souscripteur`, `SOUSCRIPTEUR` → `souscripteur` ; `assuré` → `assure`), abréviation `prosp.` → `prospect` ; la valeur `client` va en quarantaine, sans correction automatique | 200 lignes en échec : 80 casse, 40 accent, 20 abréviation, 60 `client` ; échantillon de 20 : 6 / 8 / 2 / 4 | Data Steward (Amadou Macka Diallo) | Remplacer `client` par `souscripteur` : écarté, rien ne permet de savoir s'il s'agit d'un souscripteur, d'un assuré ou d'un prospect |
+| 4 | 21/10/2026 | S2 | RQ-002 : date de calcul de l'âge | L'âge du souscripteur se calcule à la date de début du contrat, pas à la date du jour | 301 échecs à la date de début contre 157 à la date de référence : 144 souscriptions de mineurs seraient masquées (ex. CT0000387, 17 ans en 2014) | Data Steward (Amadou Macka Diallo) | Âge à la date du jour : écarté, il valide des contrats signés par des mineurs |
+| 5 | 21/10/2026 | S2 | RQ-010 : durées hors catalogue | Les 600 contrats hors {12, 24, 36, 60} vont en quarantaine en silver, sans arrondi automatique ; 120 mois est traité comme une erreur de saisie probable (12 → 120), à vérifier avant correction | 18 mois : 229, 6 : 148, 48 : 104, 9 : 64, 120 : 55 (requête GROUP BY sur bronze.crm_contrat, lot L-2026-10-01) | Data Steward (Amadou Macka Diallo) | Arrondir à la durée du catalogue la plus proche : écarté, cela changerait la garantie réellement vendue |
 | 6 | … | … | … | … | … | … | … |
 | 7 | … | … | … | … | … | … | … |
 | 8 | … | … | … | … | … | … | … |
-
-Ajoutez des lignes autant que nécessaire. Exemples de décisions attendues : sévérité d'une règle, seuil d'avertissement, définition unique du client actif, convention de la valeur sentinelle, seuils de rapprochement, règle de survie par attribut, seuil de la porte G.
 
 Ajoutez des lignes autant que nécessaire. Exemples de décisions attendues : sévérité d'une règle, seuil d'avertissement, définition unique du client actif, convention de la valeur sentinelle, seuils de rapprochement, règle de survie par attribut, seuil de la porte G.
