@@ -6,13 +6,13 @@ Mettez à jour ce tableau à chaque fin de séance (et dès qu'une story change 
 
 | Séance | Story | Intitulé | Statut | Preuve (chemin ou commande) | Remarque |
 |---|---|---|---|---|---|
-| S1 | US-01 | Inventorier les sources | À faire | … | |
-| S1 | US-02 | Alimenter bronze | À faire | … | |
-| S1 | US-03 | Porte B : réconcilier source et bronze | À faire | … | |
-| S1 | US-04 | Dictionnaire du CIF | À faire | … | |
-| S1 | US-06 | Profil de crm.client | À faire | … | |
-| S1 | US-07 | Motifs code postal, téléphone, pays | À faire | … | |
-| S1 | US-09 | Trois définitions du client actif | À faire | … | |
+| S1 | US-01 | Inventorier les sources | Fait | reports/S1_profilage_sources.sql |7 tables, 385 262 lignes, clés primaires identifiées |
+| S1 | US-02 | Alimenter bronze | Fait | pipelines/ingest_bronze.py |385 262 lignes chargées en Bronze |
+| S1 | US-03 | Porte B : réconcilier source et bronze | Fait | pipelines/check_gate_b.py |Gate B : GO, 7/7 tables conformes |
+| S1 | US-04 | Dictionnaire du CIF | Fait | reports/S1_dictionnaire_cif.sql |10 colonnes identifiées |
+| S1 | US-06 | Profil de crm.client | Fait | reports/S1_profilage_crm_client.sql |Profilage de 100 000 clients |
+| S1 | US-07 | Motifs code postal, téléphone, pays | Fait | reports/S1_profilage_crm_client.sql |Contrôles téléphone, code postal et pays |
+| S1 | US-09 | Trois définitions du client actif | Fait | reports/S1_client_actif.sql |3 définitions comparées |
 | S2 | US-10 | Règles en tests Great Expectations | À faire | … | |
 | S2 | US-11 | Lignes en échec | À faire | … | |
 | S2 | US-13 | Âge à la date de début du contrat | À faire | … | |
