@@ -6,7 +6,7 @@ Mettez à jour ce tableau à chaque fin de séance (et dès qu'une story change 
 
 | Séance | Story | Intitulé | Statut | Preuve (chemin ou commande) | Remarque |
 |---|---|---|---|---|---|
-| S1 | US-01 | Inventorier les sources | En cours | reports/S1_profilage_crm_client.sql |Inventaire des 7 sources réalisé ; preuve complète à consolider |
+| S1 | US-01 | Inventorier les sources | Fait | reports/S1_profilage_sources.sql |7 tables, 385 262 lignes, clés primaires identifiées |
 | S1 | US-02 | Alimenter bronze | Fait | pipelines/ingest_bronze.py |385 262 lignes chargées en Bronze |
 | S1 | US-03 | Porte B : réconcilier source et bronze | Fait | pipelines/check_gate_b.py |Gate B : GO, 7/7 tables conformes |
 | S1 | US-04 | Dictionnaire du CIF | Fait | reports/S1_dictionnaire_cif.sql |10 colonnes identifiées |
