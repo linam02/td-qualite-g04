@@ -6,13 +6,13 @@ Mettez à jour ce tableau à chaque fin de séance (et dès qu'une story change 
 
 | Séance | Story | Intitulé | Statut | Preuve (chemin ou commande) | Remarque |
 |---|---|---|---|---|---|
-| S1 | US-01 | Inventorier les sources | Fait | `pipelines/S1_g04_mesures.py` (US-01), `reports/s1/S1_resultats.md` | 7 tables, 0 doublon de clé |
-| S1 | US-02 | Alimenter bronze | Fait | `pipelines/S1_g04_mesures.py` (US-02) | lot L-2026-10-01, 4 métadonnées par ligne |
-| S1 | US-03 | Porte B : réconcilier source et bronze | Fait | `pipelines/S1_g04_mesures.py` (US-03, épreuves 1 à 3), `dq.dq_history` | 0 écart sur 7 tables, écart volontaire détecté |
-| S1 | US-04 | Dictionnaire du CIF | Fait | `livrables/S1_bronze_profilage.md` section 4 | 10 colonnes clients + 4 compte |
-| S1 | US-06 | Profil de crm.client | En cours | `reports/ydata_profiling_client.html`, `livrables/S1_bronze_profilage.md` section 3 | section YData à compléter |
-| S1 | US-07 | Motifs code postal, téléphone, pays | Fait | `pipelines/S1_g04_mesures.py` (US-07) | RQ-005 : 1 456 sur 95 437 |
-| S1 | US-09 | Trois définitions du client actif | Fait | `pipelines/S1_g04_mesures.py` (US-09) | 50 508 / 44 116 / 38 049 |
+| S1 | US-01 | Inventorier les sources | Fait | reports/S1_profilage_sources.sql |7 tables, 385 262 lignes, clés primaires identifiées |
+| S1 | US-02 | Alimenter bronze | Fait | pipelines/ingest_bronze.py |385 262 lignes chargées en Bronze |
+| S1 | US-03 | Porte B : réconcilier source et bronze | Fait | pipelines/check_gate_b.py |Gate B : GO, 7/7 tables conformes |
+| S1 | US-04 | Dictionnaire du CIF | Fait | reports/S1_dictionnaire_cif.sql |10 colonnes identifiées |
+| S1 | US-06 | Profil de crm.client | Fait | reports/S1_profilage_crm_client.sql |Profilage de 100 000 clients |
+| S1 | US-07 | Motifs code postal, téléphone, pays | Fait | reports/S1_profilage_crm_client.sql |Contrôles téléphone, code postal et pays |
+| S1 | US-09 | Trois définitions du client actif | Fait | reports/S1_client_actif.sql |3 définitions comparées |
 | S2 | US-10 | Règles en tests Great Expectations | À faire | … | |
 | S2 | US-11 | Lignes en échec | À faire | … | |
 | S2 | US-13 | Âge à la date de début du contrat | À faire | … | |
