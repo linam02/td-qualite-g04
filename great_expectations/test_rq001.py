@@ -11,11 +11,21 @@ DB_URL = os.getenv(
     "mysql+pymysql://root:root@mariadb:3306"
 )
 
+import re
+
+SCHEMA = os.getenv("DQ_SCHEMA", "bronze")
+TABLE = os.getenv("DQ_TABLE", "crm_contrat")
+
+# Vérification des identifiants SQL
+for name, value in [("schema", SCHEMA), ("table", TABLE)]:
+    if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", value):
+        raise ValueError(f"Nom de {name} invalide : {value}")
+
 engine = create_engine(DB_URL)
 
 # Charger les dates du lot Bronze.
 # La comparaison utilise des dates SQL, pas des chaînes de caractères.
-query = text("""
+query = text(f"""
     SELECT
         contrat_id,
         date_debut,
@@ -28,7 +38,7 @@ query = text("""
             THEN 1
             ELSE 0
         END AS rq001_valide
-    FROM bronze.crm_contrat
+    FROM {SCHEMA}.{TABLE}
     WHERE _batch_id = :batch_id
 """)
 
