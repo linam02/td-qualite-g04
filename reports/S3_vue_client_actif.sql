@@ -1,0 +1,1 @@
+CREATE OR REPLACE VIEW dq.v_client_actif_bronze AS SELECT DISTINCT souscripteur_id AS client_id FROM bronze.crm_contrat WHERE _batch_id = 'L-2026-10-01' AND date_debut <= '2026-10-01' AND date_fin >= '2026-10-01' AND date_derniere_cotisation >= '2026-07-01' AND souscripteur_id IN (SELECT client_id FROM bronze.crm_client WHERE _batch_id = 'L-2026-10-01');
