@@ -179,7 +179,7 @@ print(faux.to_string(index=False))
 print("RQ-018 · écart entre la définition Commerciale et la fiche CD-001 (Soda) :", valeur(controle=CTRL[CTRL.controle.str.startswith("ecart_client_actif")].controle.iloc[0]), "clients")
 
 # Condition de la fiche CD-001 : contrat en cours à DATE_REF ET cotisation depuis COTISATION_MIN (à compléter, en SQL, sur les colonnes de bronze.crm_contrat).
-CONDITION_CD001 = None
+CONDITION_CD001 = f"date_debut <= '{DATE_REF}' AND date_fin >= '{DATE_REF}' AND date_derniere_cotisation >= '{COTISATION_MIN}' AND souscripteur_id IS NOT NULL"
 if CONDITION_CD001:
     executer(f"CREATE OR REPLACE VIEW dq.v_client_actif_bronze AS SELECT DISTINCT souscripteur_id AS client_id FROM bronze.crm_contrat WHERE {CONDITION_CD001}")
     print(lire("SELECT COUNT(*) AS clients_actifs FROM dq.v_client_actif_bronze"))      # un seul chiffre, quelle que soit la direction qui interroge la vue

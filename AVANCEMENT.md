@@ -1,6 +1,6 @@
 # Avancement du groupe
 
-Groupe : [À COMPLÉTER]
+Groupe : g04
 
 Mettez à jour ce tableau à chaque fin de séance (et dès qu'une story change d'état). Statut : `À faire`, `En cours`, `Fait`, `Bloqué`. La preuve est un chemin du dépôt (notebook, fichier de checks, requête) ou une commande ; pas de preuve, pas de `Fait`.
 
@@ -17,12 +17,12 @@ Mettez à jour ce tableau à chaque fin de séance (et dès qu'une story change 
 | S2 | US-11 | Lignes en échec | Fait | `reports/echecs/` (non versionné), `livrables/S2_regles_great_expectations.md` section 2 | 20 lignes RQ-009 classées en 4 familles |
 | S2 | US-13 | Âge à la date de début du contrat | Fait | `pipelines/S2_regles_great_expectations.py` (US-13) | 301 à la signature contre 157 à la date de référence |
 | S2 | US-15 | Mesure de référence sur bronze | Fait | `dq.dq_history`, couche BRONZE, lot L-2026-10-01 | complétude 88,0 %, 5 règles bloquantes sur 6 sous le seuil |
-| S3 | US-12 | Checks Soda, une source par couche | À faire | … | |
-| S3 | US-16 | Clés étrangères | À faire | … | |
-| S3 | US-17 | Valeur sentinelle | À faire | … | |
-| S3 | US-18 | Statuts de personne | À faire | … | |
-| S3 | US-19 | Période de garantie | À faire | … | |
-| S3 | US-14 | Définition unique du client actif | À faire | … | |
+| S3 | US-12 | Checks Soda, une source par couche | Fait | `soda/configuration.yml`, `soda/checks/bronze/`, `pipelines/S3_integrite_soda.py` | code retour de la porte : 2 (échec), 9 règles bloquantes en échec |
+| S3 | US-16 | Clés étrangères | Fait | `pipelines/S3_integrite_soda.py` (US-16) | RQ-012 : 1 000 ; RQ-011 : 200 ; RQ-007 : 3 050 ; sinistre → contrat : 0 |
+| S3 | US-17 | Valeur sentinelle | Fait | `soda/checks/bronze/sentinelle_avant.yml`, `soda/checks/contrat_checks.yml` | 40 300 orphelins avant, 300 après ; décision n° 6 |
+| S3 | US-18 | Statuts de personne | Fait | `pipelines/S3_integrite_soda.py` (US-18) | RQ-015 : 479 ; RQ-016 : 955 ; décision n° 7 |
+| S3 | US-19 | Période de garantie | Fait | `pipelines/S3_integrite_soda.py` (US-19) | 1 200 hors période, dont 344 couverts par un autre contrat ; décision n° 9 |
+| S3 | US-14 | Définition unique du client actif | Fait | vue `dq.v_client_actif_bronze`, `pipelines/S3_integrite_soda.py` (US-14) | 38 049 pour les 3 directions ; décision n° 8 |
 | S4 | US-21 | Silver : standardiser | À faire | … | |
 | S4 | US-22 | Quarantaine | À faire | … | |
 | S4 | US-23 | Porte S : re-mesurer sur silver | À faire | … | |
