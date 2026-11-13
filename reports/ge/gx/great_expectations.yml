@@ -94,7 +94,7 @@ data_docs_sites:
       class_name: DefaultSiteIndexBuilder
 
 anonymous_usage_statistics:
-  data_context_id: 31f86434-4d3e-47fd-b5a1-c18b3c227c1b
+  data_context_id: 75419e61-7bc5-436d-b3b2-96ec28b1229b
   enabled: true
 fluent_datasources:
   mariadb_df:
