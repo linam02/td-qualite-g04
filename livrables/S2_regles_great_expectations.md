@@ -6,7 +6,7 @@ Un constat = un chiffre mesuré (règle, couche) + la preuve qui le reproduit + 
 
 **Preuves** : `pipelines/S2_regles_great_expectations.py` (script de référence, relançable de bout en bout), `notebooks/S2_Fatine.ipynb` (US-10), `notebooks/S2_regles_great_expectations.ipynb` (US-11, branche de Lyse), journal des décisions (`livrables/JOURNAL_DECISIONS.md`, décisions 2 à 5). Lot `L-2026-10-01`, couche BRONZE.
 
-Contributions : section 1 et pièges : Fatine Mourid ; échantillon des lignes en échec (section 2) : Lyse Ndifo ; classement RQ-009, familles RQ-010, sévérités et décisions : Amadou Macka Diallo (Data Steward) ; sections 3 et 4 : [À COMPLÉTER : qui] ; Quỳnh Lê : [À COMPLÉTER]. Rôles S2 : voir `livrables/00_equipe.md`.
+Contributions : section 1 et pièges : Fatine Mourid ; échantillon des lignes en échec (section 2) : Lyse Ndifo ; classement RQ-009, familles RQ-010, sévérités et décisions, sections 3 et 4 (exécution du script S2, lecture de l'âge et de la mesure de référence) : Amadou Macka Diallo (Data Steward) ; tests Great Expectations et historique de la qualité sur bronze (branche `lequy`) : Quỳnh Lê. Rôles S2 : voir `livrables/00_equipe.md`.
 
 ## 1. Règles en tests (US-10)
 
@@ -110,14 +110,14 @@ Phrase de synthèse : Voici la qualité de ce qui nous est livré : sur bronze (
 ## 5. Critères de fin
 
 - [x] Chaque expectation porte l'identifiant de sa règle. (`meta={"rule_id": …}` sur chaque expectation, section 1)
-- [ ] La même suite se relance sur une autre base ou table sans modification de code. (non démontré à ce jour : la variable `COUCHE` et les requêtes `CHARGEMENT["SILVER"]` sont prêtes, mais silver est vide ; la relance sera faite en S4, US-23, avec `COUCHE=SILVER`)
+- [x] La même suite se relance sur une autre base ou table sans modification de code. (démontré en S4, US-23 : `pipelines/S2_regles_great_expectations.py` relancé tel quel avec `COUCHE=SILVER`, code retour 0 ; voir `livrables/S4_silver_gold.md`, section 2)
 - [x] La mesure de référence est dans `dq.dq_history` avec le lot, la couche, les lignes testées et les échecs. (section 4)
 - [x] Les règles sont exécutables d'un seul geste (script ou notebook relançable de bout en bout). (`pipelines/S2_regles_great_expectations.py` ; la relance remplace les mesures du lot, sans doublon)
 
 ## 6. Difficultés, écarts avec l'attendu, reprise
 
-Difficultés rencontrées et temps perdu : fusion des branches de S1 dans `main`, conflit sur `AVANCEMENT.md` et sur le livrable S1, environ 30 min en début de séance. [À COMPLÉTER : autres difficultés]
+Difficultés rencontrées et temps perdu : fusion des branches de S1 dans `main`, conflit sur `AVANCEMENT.md` et sur le livrable S1, environ 30 min en début de séance ; quatre membres ont traité la séance en parallèle sur leurs branches, ce qui a demandé de fusionner trois versions du livrable (environ 30 min).
 
 Point de reprise utilisé (oui / non, lequel) : non.
 
-Ce que nous ferions autrement : [À COMPLÉTER]
+Ce que nous ferions autrement : répartir les stories entre les membres dès le début de la séance (une personne par story, un seul rédacteur) au lieu de traiter toute la séance chacun de son côté ; fusionner chaque branche dans `main` avant la fin de la séance ; exporter aussi le décompte des 20 lignes RQ-009 par famille directement dans le script, pour que le classement soit reproductible.
