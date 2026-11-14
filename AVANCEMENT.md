@@ -23,18 +23,19 @@ Mettez à jour ce tableau à chaque fin de séance (et dès qu'une story change 
 | S3 | US-18 | Statuts de personne | Fait | `pipelines/S3_integrite_soda.py` (US-18) | RQ-015 : 479 ; RQ-016 : 955 ; décision n° 7 |
 | S3 | US-19 | Période de garantie | Fait | `pipelines/S3_integrite_soda.py` (US-19) | 1 200 hors période, dont 344 couverts par un autre contrat ; décision n° 9 |
 | S3 | US-14 | Définition unique du client actif | Fait | vue `dq.v_client_actif_bronze`, `pipelines/S3_integrite_soda.py` (US-14) | 38 049 pour les 3 directions ; décision n° 8 |
-| S4 | US-21 | Silver : standardiser | À faire | … | |
-| S4 | US-22 | Quarantaine | À faire | … | |
-| S4 | US-23 | Porte S : re-mesurer sur silver | À faire | … | |
-| S4 | US-24 | Dédoublonnage | À faire | … | |
-| S4 | US-25 | Golden record | À faire | … | |
-| S4 | US-27 | Gold et client actif unique | À faire | … | |
-| S4 | US-28 | Traçabilité de trois données | À faire | … | |
-| S5 | US-29 | Historique des mesures | À faire | … | |
-| S5 | US-30 | Courbes d'évolution | À faire | … | |
-| S5 | US-31 | Certificat de qualité | À faire | … | |
-| S5 | US-32 | Publication vers le CRM | À faire | … | |
-| S5 | US-34 | Catalogue, propriétaires, lineage | À faire | … | |
-| S5 | US-35 | Dossier go/no-go | À faire | … | |
+| S4 | US-21 | Silver : standardiser | Fait | `pipelines/S4_silver_gold.py` (US-21), `silver.client`, `silver.contrat`, `silver.sinistre` | idempotent : signatures identiques sur deux passages |
+| S4 | US-22 | Quarantaine | Fait | `dq.rejets` (porte S) | silver + rejets = bronze, écart 0 sur 4 tables |
+| S4 | US-23 | Porte S : re-mesurer sur silver | Fait | `pipelines/S4_silver_gold.py` (US-23), `dq.dq_history` couche SILVER | règles bloquantes de la porte S à 100 % |
+| S4 | US-24 | Dédoublonnage | Fait | `pipelines/S4_silver_gold.py` (US-24) | 139 350 lignes → 120 480 identités, précision et rappel 1,0 |
+| S4 | US-25 | Golden record | Fait | `gold.client_unique`, `gold.xref_identifiants` | Société Meunier : 4 identifiants → CLI-033758 |
+| S4 | US-27 | Gold et client actif unique | Fait | `gold.v_client_actif`, `dq.dq_history` couche GOLD | porte G franchie, 0 orphelin, 35 985 clients actifs |
+| S4 | US-28 | Traçabilité de trois données | Fait | `pipelines/S4_silver_gold.py` (US-28) | Meunier, code postal 01500, sinistre SIN0000012 |
+| S5 | US-29 | Historique des mesures | Fait | `pipelines/S5_certificat_publication.py` (US-29), `dq.v_derniere_mesure`, `reports/go_nogo_historique.csv` | une mesure par règle et par couche ; RQ-004, 006, 008, 014 non mesurées sur silver |
+| S5 | US-30 | Courbes d'évolution | Fait | `reports/courbe_qualite.png` | toutes les dimensions à 100 % sur gold sauf la complétude (89,9 %) ; courbe plate non démontrée |
+| S5 | US-31 | Certificat de qualité | Fait | `dq.certificat_qualite`, CERT-L-2026-10-01 | GO, 36 règles bloquantes conformes sur 36 ; lot dégradé L-TEST : NO_GO |
+| S5 | US-32 | Publication vers le CRM | Fait | `pipelines/S5_certificat_publication.py` (US-32), `crm_cible.*` | 3 refus démontrés ; RQ-025 : 0 écart sur 3 tables |
+| S5 | US-34 | Catalogue, propriétaires, lineage | Fait | `catalogue/catalog.json` | 30 tables documentées, lineage de gold.client_unique jusqu'aux sources |
+| S5 | US-35 | Dossier go/no-go | En cours | `livrables/DOSSIER_GO_NOGO.md` | GO sous conditions ; signature du Data Owner et échéances à compléter |
 
 Stories d'extension (facultatives) : US-05, US-08, US-20, US-26, US-33. Ajoutez une ligne si vous les traitez.
+| S5 | US-33 | Planifier la chaîne quotidienne | Fait | `pipelines/S5_certificat_publication.py` (US-33) | portes B, S, G ouvertes ; une porte fermée bloque la suite |

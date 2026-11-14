@@ -1,0 +1,590 @@
+{
+  "tables": [
+    {
+      "name": "cif.clients",
+      "couche": "source",
+      "columns": [
+        "column0",
+        "column1",
+        "column2",
+        "column3",
+        "column4",
+        "column5",
+        "column6",
+        "column7",
+        "column8",
+        "column9"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "cif.compte",
+      "couche": "source",
+      "columns": [
+        "column0",
+        "column1",
+        "column2",
+        "column3"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "cif.pays",
+      "couche": "source",
+      "columns": [
+        "code_pays",
+        "nom_pays"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "crm.client",
+      "couche": "source",
+      "columns": [
+        "client_id",
+        "type_personne",
+        "nom",
+        "prenom",
+        "raison_sociale",
+        "date_naissance",
+        "adresse",
+        "cp",
+        "ville",
+        "pays",
+        "telephone",
+        "email",
+        "date_creation"
+      ],
+      "owner": "Claire Dumontier",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "crm.contrat",
+      "couche": "source",
+      "columns": [
+        "contrat_id",
+        "souscripteur_id",
+        "assure_id",
+        "code_type",
+        "date_debut",
+        "date_fin",
+        "duree_garantie_mois",
+        "prime_annuelle",
+        "date_derniere_cotisation"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "crm.sinistre",
+      "couche": "source",
+      "columns": [
+        "sinistre_id",
+        "contrat_id",
+        "date_survenance",
+        "date_declaration",
+        "type_sinistre",
+        "montant_estime",
+        "adresse_sinistre",
+        "cp_sinistre",
+        "ville_sinistre",
+        "canal_saisie"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "crm.type_contrat",
+      "couche": "source",
+      "columns": [
+        "code_type",
+        "libelle",
+        "branche"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "bronze.cif_clients",
+      "couche": "bronze",
+      "columns": [
+        "bronze_row_id",
+        "column0",
+        "column1",
+        "column2",
+        "column3",
+        "column4",
+        "column5",
+        "column6",
+        "column7",
+        "column8",
+        "column9",
+        "_batch_id",
+        "_source_system",
+        "_ingested_at",
+        "_row_hash"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "bronze.cif_compte",
+      "couche": "bronze",
+      "columns": [
+        "bronze_row_id",
+        "column0",
+        "column1",
+        "column2",
+        "column3",
+        "_batch_id",
+        "_source_system",
+        "_ingested_at",
+        "_row_hash"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "bronze.cif_pays",
+      "couche": "bronze",
+      "columns": [
+        "bronze_row_id",
+        "code_pays",
+        "nom_pays",
+        "_batch_id",
+        "_source_system",
+        "_ingested_at",
+        "_row_hash"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "bronze.crm_client",
+      "couche": "bronze",
+      "columns": [
+        "bronze_row_id",
+        "client_id",
+        "type_personne",
+        "nom",
+        "prenom",
+        "raison_sociale",
+        "date_naissance",
+        "adresse",
+        "cp",
+        "ville",
+        "pays",
+        "telephone",
+        "email",
+        "date_creation",
+        "_batch_id",
+        "_source_system",
+        "_ingested_at",
+        "_row_hash"
+      ],
+      "owner": "Claire Dumontier",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "bronze.crm_contrat",
+      "couche": "bronze",
+      "columns": [
+        "bronze_row_id",
+        "contrat_id",
+        "souscripteur_id",
+        "assure_id",
+        "code_type",
+        "date_debut",
+        "date_fin",
+        "duree_garantie_mois",
+        "prime_annuelle",
+        "date_derniere_cotisation",
+        "_batch_id",
+        "_source_system",
+        "_ingested_at",
+        "_row_hash"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "bronze.crm_sinistre",
+      "couche": "bronze",
+      "columns": [
+        "bronze_row_id",
+        "sinistre_id",
+        "contrat_id",
+        "date_survenance",
+        "date_declaration",
+        "type_sinistre",
+        "montant_estime",
+        "adresse_sinistre",
+        "cp_sinistre",
+        "ville_sinistre",
+        "canal_saisie",
+        "_batch_id",
+        "_source_system",
+        "_ingested_at",
+        "_row_hash"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "bronze.crm_type_contrat",
+      "couche": "bronze",
+      "columns": [
+        "bronze_row_id",
+        "code_type",
+        "libelle",
+        "branche",
+        "_batch_id",
+        "_source_system",
+        "_ingested_at",
+        "_row_hash"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "silver.client",
+      "couche": "silver",
+      "columns": [
+        "silver_row_id",
+        "bronze_row_id",
+        "source_systeme",
+        "source_id",
+        "type_personne",
+        "identite_normalisee",
+        "prenom_normalise",
+        "date_naissance",
+        "adresse_normalisee",
+        "cp",
+        "ville_normalisee",
+        "pays_iso",
+        "telephone_normalise",
+        "email_normalise",
+        "statut_qualite",
+        "_batch_id",
+        "_processed_at"
+      ],
+      "owner": "Claire Dumontier",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "silver.contrat",
+      "couche": "silver",
+      "columns": [
+        "silver_row_id",
+        "bronze_row_id",
+        "contrat_id",
+        "souscripteur_id",
+        "assure_id",
+        "code_type",
+        "date_debut",
+        "date_fin",
+        "duree_garantie_mois",
+        "prime_annuelle",
+        "date_derniere_cotisation",
+        "_batch_id",
+        "_processed_at"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "silver.ref_ban",
+      "couche": "silver",
+      "columns": [
+        "id_ban",
+        "numero",
+        "voie",
+        "code_postal",
+        "commune"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "silver.ref_pays",
+      "couche": "silver",
+      "columns": [
+        "code_pays",
+        "nom_pays"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "silver.ref_postal",
+      "couche": "silver",
+      "columns": [
+        "code_postal",
+        "commune"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "silver.sinistre",
+      "couche": "silver",
+      "columns": [
+        "silver_row_id",
+        "bronze_row_id",
+        "sinistre_id",
+        "contrat_id",
+        "date_survenance",
+        "date_declaration",
+        "type_sinistre",
+        "montant_estime",
+        "adresse_normalisee",
+        "cp",
+        "ville_normalisee",
+        "canal_saisie",
+        "_batch_id",
+        "_processed_at"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "silver.type_contrat",
+      "couche": "silver",
+      "columns": [
+        "code_type",
+        "libelle",
+        "branche"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "gold.client_unique",
+      "couche": "gold",
+      "columns": [
+        "cli_id",
+        "nom_reference",
+        "date_naissance",
+        "cp",
+        "ville",
+        "pays_iso",
+        "telephone",
+        "email",
+        "nb_identifiants_source",
+        "statut_client",
+        "_batch_id"
+      ],
+      "owner": "Claire Dumontier",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "gold.contrat_certifie",
+      "couche": "gold",
+      "columns": [
+        "contrat_id",
+        "cli_souscripteur",
+        "cli_assure",
+        "code_type",
+        "date_debut",
+        "date_fin",
+        "duree_garantie_mois",
+        "prime_annuelle",
+        "date_derniere_cotisation",
+        "bronze_row_id",
+        "silver_row_id",
+        "_batch_id"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "gold.sinistre_certifie",
+      "couche": "gold",
+      "columns": [
+        "sinistre_id",
+        "contrat_id",
+        "date_survenance",
+        "date_declaration",
+        "type_sinistre",
+        "montant_estime",
+        "adresse_normalisee",
+        "cp",
+        "ville_normalisee",
+        "canal_saisie",
+        "bronze_row_id",
+        "silver_row_id",
+        "_batch_id"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "gold.xref_identifiants",
+      "couche": "gold",
+      "columns": [
+        "cli_id",
+        "source_systeme",
+        "source_id",
+        "bronze_row_id",
+        "silver_row_id"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "dq.certificat_qualite",
+      "couche": "qualité",
+      "columns": [
+        "certificat_id",
+        "batch_id",
+        "emis_le",
+        "nb_bloquantes_testees",
+        "nb_bloquantes_ok",
+        "empreinte_gold",
+        "decision",
+        "signataire",
+        "commentaire"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "dq.dq_history",
+      "couche": "qualité",
+      "columns": [
+        "id",
+        "batch_id",
+        "couche",
+        "rule_id",
+        "table_cible",
+        "nb_testees",
+        "nb_echecs",
+        "taux_conformite",
+        "mesure_le"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "dq.lot_ingestion",
+      "couche": "qualité",
+      "columns": [
+        "batch_id",
+        "started_at",
+        "finished_at",
+        "statut"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "dq.regle",
+      "couche": "qualité",
+      "columns": [
+        "rule_id",
+        "libelle",
+        "dimension",
+        "porte",
+        "severite",
+        "seuil_min"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    },
+    {
+      "name": "dq.rejets",
+      "couche": "qualité",
+      "columns": [
+        "id",
+        "batch_id",
+        "entite",
+        "source_systeme",
+        "bronze_row_id",
+        "rule_id",
+        "porte",
+        "motif",
+        "rejete_le"
+      ],
+      "owner": "Yanis Belkacem",
+      "steward": "Yanis Belkacem"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Client actif",
+      "definition": "Contrat en cours ET à jour de cotisation sur 3 mois glissants (fiche CD-001)",
+      "owner": "Claire Dumontier",
+      "validated": "2026-04-01"
+    }
+  ],
+  "lineage": [
+    {
+      "from": "crm.client",
+      "to": "bronze.crm_client",
+      "via": "ingestion (porte B, RQ-021)"
+    },
+    {
+      "from": "cif.clients",
+      "to": "bronze.cif_clients",
+      "via": "ingestion (porte B, RQ-021)"
+    },
+    {
+      "from": "crm.contrat",
+      "to": "bronze.crm_contrat",
+      "via": "ingestion (porte B, RQ-021)"
+    },
+    {
+      "from": "crm.sinistre",
+      "to": "bronze.crm_sinistre",
+      "via": "ingestion (porte B, RQ-021)"
+    },
+    {
+      "from": "bronze.crm_client",
+      "to": "silver.client",
+      "via": "standardisation et quarantaine (porte S)"
+    },
+    {
+      "from": "bronze.cif_clients",
+      "to": "silver.client",
+      "via": "standardisation et quarantaine (porte S)"
+    },
+    {
+      "from": "bronze.crm_contrat",
+      "to": "silver.contrat",
+      "via": "standardisation et quarantaine (porte S)"
+    },
+    {
+      "from": "bronze.crm_sinistre",
+      "to": "silver.sinistre",
+      "via": "standardisation (porte S)"
+    },
+    {
+      "from": "silver.client",
+      "to": "gold.client_unique",
+      "via": "dédoublonnage (porte G, RQ-019)"
+    },
+    {
+      "from": "silver.client",
+      "to": "gold.xref_identifiants",
+      "via": "traçabilité des identifiants (RQ-023)"
+    },
+    {
+      "from": "silver.contrat",
+      "to": "gold.contrat_certifie",
+      "via": "règles bloquantes de la porte G (RQ-011, 012, 013)"
+    },
+    {
+      "from": "silver.sinistre",
+      "to": "gold.sinistre_certifie",
+      "via": "règle RQ-017"
+    },
+    {
+      "from": "gold.client_unique",
+      "to": "crm_cible.client",
+      "via": "publication sous certificat (RQ-025)"
+    }
+  ]
+}
