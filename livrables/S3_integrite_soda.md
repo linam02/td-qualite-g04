@@ -20,17 +20,14 @@ Un avertissement et un échec : à quelle condition le code retour du scan devie
 
 Les valeurs Soda sont-elles cohérentes avec celles de Great Expectations en S2 ? Écarts et explication : [À COMPLÉTER]
 
-## 2. Bilan d'intégrité (US-16)
-
-Aucune clé étrangère n'est déclarée dans la base : chaque relation est à vérifier.
 
 | Relation | Lignes testées | Orphelins | Taux | Conclusion (anomalie, sentinelle, normal) |
-|---|---|---|---|---|
-| contrat.souscripteur_id vers client | … | … | … | … |
-| contrat.assure_id vers client | … | … | … | … |
-| contrat.code_type vers type_contrat | … | … | … | … |
-| sinistre.contrat_id vers contrat | … | … | … | … |
-| … | … | … | … | … |
+|---|---:|---:|---:|---|
+| contrat.souscripteur_id vers client | 100 000 | 1 000 | 1,000 % | anomalie |
+| contrat.assure_id vers client (valeur `0` exclue) | 60 000 | 300 | 0,500 % | anomalie (hors sentinelle) |
+| contrat.code_type vers type_contrat | 100 000 | 200 | 0,200 % | anomalie |
+| sinistre.contrat_id vers contrat | 100 000 | 0 | 0,000 % | normal |
+| client.pays vers ref_pays | 100 000 | 3 050 | 3,050 % | anomalie |
 
 ## 3. Valeur sentinelle (US-17)
 
