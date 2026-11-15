@@ -67,4 +67,8 @@ Signature du Data Owner (nom, rôle, date) : Lina Merazga, Data Owner (S5), 15/1
 
 ## Annexes
 
+Certificat de qualité : ligne de `dq.certificat_qualite` exportée dans `livrables/certificat_qualite.txt` (CERT-L-2026-10-01, GO, 36/36, signataire Lina Merazga, Data Owner). Démonstration : `notebooks/S5_certificat_publication.ipynb`, déjà exécuté.
+
+Dépôt : https://github.com/linam02/td-qualite-g04 (étiquette `rendu-final`).
+
 Liens vers les livrables : `livrables/S1_bronze_profilage.md`, `S2_regles_great_expectations.md`, `S3_integrite_soda.md`, `S4_silver_gold.md`, `S5_certificat_publication.md`, `JOURNAL_DECISIONS.md`, `AVANCEMENT.md`. Chiffres exportés : `reports/go_nogo_seuils.csv`, `go_nogo_ecarts.csv`, `go_nogo_quarantaine.csv`, `go_nogo_historique.csv`, `go_nogo_reconciliation.csv`. Courbe : `reports/courbe_qualite.png`.

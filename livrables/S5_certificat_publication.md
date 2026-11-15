@@ -56,7 +56,7 @@ Courbe « plate tant que rien ne change » : non démontrée faute de temps (éc
 | Règles bloquantes conformes | 36 sur 36 |
 | Écarts connus (avertissements) | RQ-003 sur gold : 89,938 % pour un seuil de 98 % (4 692 clients sans téléphone) ; RQ-016 sur silver : 97,700 % (1 143 souscripteurs sans contrat) |
 | Empreinte du gold | `dd23cc3a7405c4366a4a979545a37e1cd8eaf1f928712a9bd2ed199c2a25a894` (SHA-256) |
-| Signataire (rôle) | Data Owner Lina Merazga ; émis le 14/11/2026 à 22:49 |
+| Signataire (rôle) | Data Owner Lina Merazga ; émis le 15/11/2026 à 21:51 (réémis à l'exécution du notebook `notebooks/S5_certificat_publication.ipynb`, empreinte identique à celle du 14/11) ; ligne exportée : `livrables/certificat_qualite.txt` |
 
 Requête de décision (chemin) : `pipelines/S5_certificat_publication.py`, cellule US-31, requête `DECISION` : GO si aucune règle BLOQUANTE des portes B, S et G n'est sous son seuil, chaque règle étant lue sur la couche de sa porte (B → bronze, S → silver, G → gold).
 
