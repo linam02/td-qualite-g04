@@ -36,12 +36,14 @@ Aucune clé étrangère n'est déclarée dans la base : chaque relation est à v
 
 | Contrôle | Orphelins | Preuve |
 |---|---|---|
-| Sur `assure_id`, avant traitement de la sentinelle | … | … |
-| Sur `assure_id`, après traitement | … | … |
+| Sur `assure_id`, avant traitement de la sentinelle | 40 300 sur 100 000 contrats (40,3 %) | `notebooks/S3_integrite_soda.ipynb`, cellule US-17 ; `soda/checks/bronze/sentinelle_avant.yml` |
+| Sur `assure_id`, après traitement | 300 sur 60 000 contrats testés (0,5 %) | `notebooks/S3_integrite_soda.ipynb`, cellule US-17 ; filtre `assure_renseigne` de `soda/checks/contrat_checks.yml` |
 
-Écart chiffré et convention écrite (comment la valeur sentinelle est traitée, par qui, dans quelle couche) : [À COMPLÉTER]
+Écart chiffré et convention écrite : l'écart est de 40 000 orphelins, exactement le nombre de contrats où `assure_id` vaut « 0 » (40 000 sur 100 000). Ce « 0 » n'est pas un identifiant client mais une **valeur sentinelle** qui signifie « l'assuré est le souscripteur lui-même » : aucun contrat ne porte un `assure_id` égal à son `souscripteur_id`, la source écrit « 0 » à la place. 
 
-Pourquoi le premier contrôle est trompeur : [À COMPLÉTER]
+Convention : la sentinelle est conservée telle quelle en bronze (copie fidèle), exclue des contrôles de clé par le filtre `assure_id <> '0'`, puis remplacée par NULL en silver. Proposée par le Data Steward, validée par le Data Owner (voir `JOURNAL_DECISIONS.md`).
+
+Pourquoi le premier contrôle est trompeur : il traite « 0 » comme un identifiant client et cherche un client « 0 » qui n'existe pas. Il annonce donc 40,3 % de contrats en anomalie alors que seuls 300 contrats (0,3 %) pointent réellement vers un assuré inconnu (ex. H-91322, S-96271, clients probablement supprimés ou jamais chargés). Une valeur conventionnelle doit être identifiée et traitée **avant** de mesurer l'intégrité, sinon la mesure surestime le problème d'un facteur 134 et masque les vraies anomalies.
 
 ## 4. Statuts et garantie (US-18, US-19)
 

@@ -1,0 +1,13 @@
+# RQ-016 : un souscripteur a au moins un contrat
+checks for crm_client:
+  - failed rows:
+      name: RQ-016 souscripteur sans contrat
+      fail query: |
+        SELECT k.client_id FROM crm_client k
+        WHERE k.type_personne = 'souscripteur'
+          AND NOT EXISTS (SELECT 1 FROM crm_contrat c WHERE c.souscripteur_id = k.client_id)
+      warn: when > 0
+
+checks for crm_sinistre:
+  - values in (contrat_id) must exist in crm_contrat (contrat_id):
+      name: Relation sinistre vers contrat
