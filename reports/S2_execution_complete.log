@@ -1,0 +1,180 @@
+﻿
+==================== RQ-001 ====================
+R├¿gle : RQ-001
+Lot : S1_G04_001
+Lignes test├®es : 100000
+Lignes en ├®chec : 800
+Taux de r├®ussite : 99.20%
+Expectation r├®ussie : False
+S├®v├®rit├® : BLOQUANTE
+Statut de la r├¿gle : NO-GO
+
+==================== RQ-002 ====================
+R├¿gle : RQ-002
+Lot : S1_G04_001
+Contrats totaux : 100000
+Lignes test├®es : 92996
+Lignes en ├®chec : 301
+Taux de r├®ussite : 99.68%
+Expectation r├®ussie : False
+S├®v├®rit├® : BLOQUANTE
+
+R├®partition des statuts :
+statut_rq002
+CONFORME             92695
+NON_APPLICABLE        6004
+REFERENCE_ABSENTE     1000
+ECHEC                  301
+
+Statut de la r├¿gle : NO-GO
+
+==================== RQ-003 ====================
+R├¿gle : RQ-003
+Lot : S1_G04_001
+Contrats totaux : 100000
+Lignes test├®es : 99000
+Lignes en ├®chec : 12024
+Taux de r├®ussite : 87.85%
+Seuil requis : 98.00%
+Expectation r├®ussie : False
+S├®v├®rit├® : AVERTISSEMENT
+
+R├®partition des statuts :
+statut_rq003
+CONFORME             86976
+ECHEC                12024
+REFERENCE_ABSENTE     1000
+
+Statut de la r├¿gle : NO-GO
+
+==================== RQ-005 ====================
+R├¿gle : RQ-005
+Lot : S1_G04_001
+Clients totaux : 100000
+Lignes test├®es : 98037
+Lignes en ├®chec : 1493
+Taux de r├®ussite : 98.48%
+Seuil requis : 98.00%
+Expectation r├®ussie : True
+S├®v├®rit├® : AVERTISSEMENT
+
+R├®partition des statuts :
+statut_rq005
+CONFORME          96544
+NON_APPLICABLE     1563
+ECHEC              1493
+PAYS_INCONNU        400
+
+Statut de la r├¿gle : GO
+
+==================== RQ-009 ====================
+R├¿gle : RQ-009
+Lot : S1_G04_001
+Lignes test├®es : 100000
+Lignes en ├®chec : 200
+Taux de r├®ussite : 99.80%
+Seuil requis : 100.00%
+Expectation r├®ussie : False
+S├®v├®rit├® : BLOQUANTE
+
+Valeurs non conformes :
+type_personne
+client          60
+Souscripteur    50
+assur├®          40
+SOUSCRIPTEUR    30
+prosp.          20
+
+Statut de la r├¿gle : NO-GO
+
+==================== RQ-010 ====================
+R├¿gle : RQ-010
+Lot : S1_G04_001
+Lignes test├®es : 100000
+Lignes en ├®chec : 600
+Taux de r├®ussite : 99.40%
+Seuil requis : 100.00%
+Expectation r├®ussie : False
+S├®v├®rit├® : BLOQUANTE
+
+Valeurs non conformes :
+duree_garantie_mois
+18     229
+6      148
+48     104
+9       64
+120     55
+
+Statut de la r├¿gle : NO-GO
+
+==================== RQ-020 ====================
+R├¿gle : RQ-020
+Lot : S1_G04_001
+S├®v├®rit├® : BLOQUANTE
+Seuil requis : 100.00%
+
+Table : bronze.crm_client
+Cl├® primaire : client_id
+Lignes test├®es : 100000
+Lignes en ├®chec : 0
+Taux de r├®ussite : 100.00%
+Expectation r├®ussie : True
+Statut : GO
+
+Table : bronze.crm_contrat
+Cl├® primaire : contrat_id
+Lignes test├®es : 100000
+Lignes en ├®chec : 0
+Taux de r├®ussite : 100.00%
+Expectation r├®ussie : True
+Statut : GO
+
+Table : bronze.crm_sinistre
+Cl├® primaire : sinistre_id
+Lignes test├®es : 100000
+Lignes en ├®chec : 0
+Taux de r├®ussite : 100.00%
+Expectation r├®ussie : True
+Statut : GO
+
+Table : bronze.crm_type_contrat
+Cl├® primaire : code_type
+Lignes test├®es : 12
+Lignes en ├®chec : 0
+Taux de r├®ussite : 100.00%
+Expectation r├®ussie : True
+Statut : GO
+
+Table : bronze.cif_clients
+Cl├® primaire : column0
+Lignes test├®es : 40000
+Lignes en ├®chec : 0
+Taux de r├®ussite : 100.00%
+Expectation r├®ussie : True
+Statut : GO
+
+Table : bronze.cif_compte
+Cl├® primaire : column0
+Lignes test├®es : 45000
+Lignes en ├®chec : 0
+Taux de r├®ussite : 100.00%
+Expectation r├®ussie : True
+Statut : GO
+
+Table : bronze.cif_pays
+Cl├® primaire : code_pays
+Lignes test├®es : 250
+Lignes en ├®chec : 0
+Taux de r├®ussite : 100.00%
+Expectation r├®ussie : True
+Statut : GO
+
+===== BILAN RQ-020 =====
+Lignes test├®es : 385262
+Lignes en ├®chec : 0
+Taux de r├®ussite : 100.00%
+Statut global : GO
+
+========== BILAN EXECUTION S2 ==========
+7 scripts executes sans erreur technique.
+Verifier les statuts GO/NO-GO de chaque regle.

@@ -11,9 +11,23 @@ DB_URL = os.getenv(
     "mysql+pymysql://root:root@mariadb:3306"
 )
 
+import re
+
+SCHEMA = os.getenv("DQ_SCHEMA", "bronze")
+TABLE = os.getenv("DQ_TABLE", "crm_client")
+
+SQL_IDENTIFIERS = {
+    "SCHEMA": SCHEMA,
+    "TABLE": TABLE
+}
+
+for name, value in SQL_IDENTIFIERS.items():
+    if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", value):
+        raise ValueError(f"Identifiant SQL invalide : {name}={value}")
+
 engine = create_engine(DB_URL)
 
-query = text("""
+query = text(f"""
 SELECT
     client_id,
     pays,
@@ -23,7 +37,7 @@ SELECT
              ('fr', 'france', 'f', 'frnace')
         THEN
             CASE
-                WHEN cp REGEXP '^[0-9]{5}$'
+                WHEN cp REGEXP '^[0-9]{{5}}$'
                     THEN 'CONFORME'
                 ELSE 'ECHEC'
             END
@@ -31,7 +45,7 @@ SELECT
             THEN 'PAYS_INCONNU'
         ELSE 'NON_APPLICABLE'
     END AS statut_rq005
-FROM bronze.crm_client
+FROM {SCHEMA}.{TABLE}
 WHERE _batch_id = :batch_id
 """)
 

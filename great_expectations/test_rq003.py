@@ -11,9 +11,27 @@ DB_URL = os.getenv(
     "mysql+pymysql://root:root@mariadb:3306"
 )
 
+import re
+
+CONTRAT_SCHEMA = os.getenv("DQ_CONTRAT_SCHEMA", "bronze")
+CONTRAT_TABLE = os.getenv("DQ_CONTRAT_TABLE", "crm_contrat")
+CLIENT_SCHEMA = os.getenv("DQ_CLIENT_SCHEMA", "bronze")
+CLIENT_TABLE = os.getenv("DQ_CLIENT_TABLE", "crm_client")
+
+SQL_IDENTIFIERS = {
+    "CONTRAT_SCHEMA": CONTRAT_SCHEMA,
+    "CONTRAT_TABLE": CONTRAT_TABLE,
+    "CLIENT_SCHEMA": CLIENT_SCHEMA,
+    "CLIENT_TABLE": CLIENT_TABLE
+}
+
+for name, value in SQL_IDENTIFIERS.items():
+    if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", value):
+        raise ValueError(f"Identifiant SQL invalide : {name}={value}")
+
 engine = create_engine(DB_URL)
 
-query = text("""
+query = text(f"""
 SELECT
     t.contrat_id,
     t.souscripteur_id,
@@ -26,8 +44,8 @@ SELECT
             THEN 'ECHEC'
         ELSE 'CONFORME'
     END AS statut_rq003
-FROM bronze.crm_contrat t
-LEFT JOIN bronze.crm_client c
+FROM {CONTRAT_SCHEMA}.{CONTRAT_TABLE} t
+LEFT JOIN {CLIENT_SCHEMA}.{CLIENT_TABLE} c
     ON t.souscripteur_id = c.client_id
     AND t._batch_id = c._batch_id
 WHERE t._batch_id = :batch_id

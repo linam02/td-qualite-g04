@@ -11,13 +11,27 @@ DB_URL = os.getenv(
     "mysql+pymysql://root:root@mariadb:3306"
 )
 
+import re
+
+SCHEMA = os.getenv("DQ_SCHEMA", "bronze")
+TABLE = os.getenv("DQ_TABLE", "crm_contrat")
+
+SQL_IDENTIFIERS = {
+    "SCHEMA": SCHEMA,
+    "TABLE": TABLE
+}
+
+for name, value in SQL_IDENTIFIERS.items():
+    if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", value):
+        raise ValueError(f"Identifiant SQL invalide : {name}={value}")
+
 engine = create_engine(DB_URL)
 
-query = text("""
+query = text(f"""
 SELECT
     contrat_id,
     duree_garantie_mois
-FROM bronze.crm_contrat
+FROM {SCHEMA}.{TABLE}
 WHERE _batch_id = :batch_id
 """)
 

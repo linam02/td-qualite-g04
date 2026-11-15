@@ -60,7 +60,7 @@ Pour RQ-009, une comparaison exacte a été utilisée afin de respecter strictem
 
 Les sept scripts ont été exécutés sur le lot `S1_G04_001`.
 
-La connexion à la base et le lot peuvent être configurés. La possibilité de changer la table cible sans modification du code reste à finaliser.
+La connexion à la base et le lot peuvent être configurés. Les sept scripts sont exécutables en une seule commande grâce à great_expectations/run_s2.py. La connexion, le lot et les tables cibles sont configurables par variables d'environnement. L'exécution sur le lot S1_G04_001 a été validée ; la réexécution sur d'autres tables reste à vérifier.
 
 ## 2. Lignes en échec (US-11)
 
@@ -133,4 +133,25 @@ Les mesures de qualité ont été enregistrées dans la table `dq.dq_history`.
 |---|---|---:|---|---|
 | Unicité | RQ-020 | 100,000 % | RQ-020 (100,000 %) | Aucune anomalie d'unicité ou de clé nulle détectée sur les sept tables contrôlées |
 | Complétude | RQ-003 | 87,855 % | RQ-003 (87,855 %) | 12 024 anomalies sur les numéros de téléphone |
-| Validité | RQ-002, RQ-005, RQ-009, RQ-010 | 99,338 % | RQ-005 (98,477 %) | An
+| Validité | RQ-002, RQ-005, RQ-009, RQ-010 | 99,338 % | RQ-005 (98,477 %) | Les règles de validité présentent des anomalies, notamment sur les codes postaux, les types de personne et les durées de garantie. |
+| Cohérence | RQ-001 | 99,200 % | RQ-001 (99,200 %) | 800 contrats présentent une incohérence entre les dates de début et de fin. |
+
+### Interprétation de la baseline
+
+La dimension la plus dégradée est la complétude, avec un taux de conformité de 87,855 % pour RQ-003, soit 12 024 anomalies de téléphone.
+
+Les règles bloquantes RQ-001, RQ-002, RQ-009 et RQ-010 ne respectent pas leur seuil de conformité de 100 %. Elles nécessitent une analyse et une décision du Data Owner avant toute validation de la qualité des données.
+
+RQ-005 atteint son seuil de 98 % avec 98,477 % de conformité, tandis que RQ-020 atteint 100 % sur les clés contrôlées.
+
+### Reproductibilité
+
+Les sept règles Great Expectations peuvent être exécutées avec le script `great_expectations/run_s2.py`.
+
+La connexion, le lot et les tables cibles sont paramétrables par variables d'environnement.
+
+L'exécution complète a été validée sur le lot `S1_G04_001`, sans erreur technique.
+
+Preuve : `reports/S2_execution_complete.log`.
+
+La validation du paramétrage sur d'autres tables reste à effectuer.

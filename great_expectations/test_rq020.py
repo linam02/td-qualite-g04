@@ -1,5 +1,7 @@
 
 import os
+import re
+import json
 import pandas as pd
 import great_expectations as gx
 from sqlalchemy import create_engine, text
@@ -21,6 +23,23 @@ TABLES = {
     "cif_pays": "code_pays",
 }
 
+SCHEMA = os.getenv("DQ_SCHEMA", "bronze")
+TABLES_JSON = os.getenv("DQ_RQ020_TABLES")
+
+if TABLES_JSON:
+    TABLES = json.loads(TABLES_JSON)
+
+if not isinstance(TABLES, dict) or not TABLES:
+    raise ValueError("DQ_RQ020_TABLES doit etre un objet non vide")
+
+identifiers = [SCHEMA] + list(TABLES.keys()) + list(TABLES.values())
+if not all(
+    isinstance(value, str)
+    and re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", value)
+    for value in identifiers
+):
+    raise ValueError("Nom de schema, table ou colonne invalide")
+
 engine = create_engine(DB_URL)
 
 print(f"Règle : {RULE_ID}")
@@ -37,7 +56,7 @@ for table_name, pk_column in TABLES.items():
     # exclusivement de la liste autorisée TABLES.
     query = text(f"""
         SELECT `{pk_column}` AS cle_primaire
-        FROM bronze.`{table_name}`
+        FROM `{SCHEMA}`.`{table_name}`
         WHERE _batch_id = :batch_id
     """)
 
@@ -74,7 +93,7 @@ for table_name, pk_column in TABLES.items():
         result_format="COMPLETE",
         meta={
             "rule_id": RULE_ID,
-            "table": f"bronze.{table_name}",
+            "table": f"{SCHEMA}.{table_name}",
             "primary_key": pk_column
         }
     )
@@ -93,7 +112,7 @@ for table_name, pk_column in TABLES.items():
         else "NO-GO"
     )
 
-    print(f"\nTable : bronze.{table_name}")
+    print(f"\nTable : {SCHEMA}.{table_name}")
     print(f"Clé primaire : {pk_column}")
     print(f"Lignes testées : {total}")
     print(f"Lignes en échec : {echecs}")
