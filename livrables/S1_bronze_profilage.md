@@ -1,7 +1,7 @@
 
 # S1 · Stack Docker, profilage, construction de bronze
 
-Groupe : 04 · Date : 21/10/2026 · Rédacteur : Fatine Mourid  · Étiquette : `seance-1`
+Groupe : 04 · Date : 21/10/2026 · Rédacteur : LE Thi Quynh  · Étiquette : `seance-1`
 
 ## 1. Inventaire des sources (US-01)
 
