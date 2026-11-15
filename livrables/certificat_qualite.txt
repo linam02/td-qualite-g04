@@ -1,0 +1,10 @@
+﻿*************************** 1. row ***************************
+        certificat_id: CERT-L-2026-10-01
+             batch_id: L-2026-10-01
+              emis_le: 2026-11-15 21:51:49
+nb_bloquantes_testees: 36
+     nb_bloquantes_ok: 36
+       empreinte_gold: dd23cc3a7405c4366a4a979545a37e1cd8eaf1f928712a9bd2ed199c2a25a894
+             decision: GO
+           signataire: Lina Merazga, Data Owner
+          commentaire: Aucune regle bloquante en echec
