@@ -1,6 +1,6 @@
 # S2 · Great Expectations : des règles en tests automatisés
 
-Groupe : g04  ·  Date : 21/10/2026  ·  Rédacteur : [À COMPLÉTER]  ·  Étiquette : `seance-2`
+Groupe : g04  ·  Date : 21/10/2026  ·  Rédacteur : Lyse Ndifo  ·  Étiquette : `seance-2`
 
 Un constat = un chiffre mesuré (règle, couche) + la preuve qui le reproduit + ce que cela change. Voir `README.md`.
 
