@@ -100,22 +100,13 @@ fluent_datasources:
   mariadb_df:
     type: pandas
     assets:
-      crm_client:
+      client:
         type: dataframe
         batch_metadata: {}
-      crm_contrat:
+      contrat:
         type: dataframe
         batch_metadata: {}
-      crm_sinistre:
-        type: dataframe
-        batch_metadata: {}
-      cif_clients:
-        type: dataframe
-        batch_metadata: {}
-      echecs_crm_client:
-        type: dataframe
-        batch_metadata: {}
-      echecs_crm_contrat:
+      sinistre:
         type: dataframe
         batch_metadata: {}
 notebooks:

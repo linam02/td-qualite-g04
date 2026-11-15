@@ -91,16 +91,16 @@ Reportez les seuils et la règle de survie dans `JOURNAL_DECISIONS.md`, avec le 
 
 | Table gold | Lignes | Lignes écartées (porte G) | Règles responsables |
 |---|---|---|---|
-| client_unique | … | … | … |
-| xref_identifiants | … | … | … |
-| contrat_certifie | … | … | … |
-| sinistre_certifie | … | … | … |
+| client_unique | 120 480 | 0 (650 clients CRM déjà mis en quarantaine en porte S) | Porte S : RQ-007 (450), RQ-009 (200) |
+| xref_identifiants | 139 350 | 0 | – (99 350 identifiants CRM + 40 000 CIF, tous rattachés à un CLI) |
+| contrat_certifie | 95 866 | 2 734 contrats sur 98 600 (2 745 rejets, certains contrats violent deux règles) | RQ-012 (1 595), RQ-013 (657), RQ-002 (294), RQ-011 (199) |
+| sinistre_certifie | 96 532 | 3 468 sur 100 000 | RQ-017 : 2 308 dont le contrat est absent du gold, 1 160 hors période de garantie |
 
-Orphelins dans gold (contrat sans client, sinistre sans contrat) : [À COMPLÉTER]
+Orphelins dans gold (contrat sans client, sinistre sans contrat) : **0**. Aucun contrat certifié dont le souscripteur ou l'assuré est absent de `gold.client_unique`, aucun sinistre certifié dont le contrat est absent de `gold.contrat_certifie`. Porte G franchie : toutes les règles bloquantes mesurées sur gold sont à 100 % (RQ-001, 002, 007, 010 à 013, 015, 017 à 020, 023). Seule RQ-003 (avertissement, téléphone renseigné) reste sous son seuil : 89,9 % pour 98 % attendus. Preuve : `notebooks/S4_silver_gold.ipynb`, cellules US-27 et US-27 (suite) ; `dq.dq_history`, couche GOLD ; `dq.rejets`, porte G.
 
-Client actif publié par la vue `v_client_actif` : [À COMPLÉTER]. Écart avec la définition de la fiche CD-001 : [À COMPLÉTER]
+Client actif publié par la vue `v_client_actif` : **35 985** clients (`gold.v_client_actif`, la même vue pour les trois directions). Écart avec la définition de la fiche CD-001 : **0 sur gold**. RQ-018 vérifie que le statut ACTIF de chaque client correspond exactement à la condition CD-001 recalculée sur les contrats certifiés (120 480 clients testés, 0 écart). L'écart de 2 064 avec les 38 049 clients actifs calculés sur bronze en S3 ne vient pas de la définition. Il a deux causes : le dédoublonnage (plusieurs identifiants souscripteur d'une même personne ne comptent plus qu'une fois sous un seul CLI) et les contrats écartés en porte S et G, qui ne peuvent plus rendre un client actif.
 
-Effet de la quarantaine sur l'intégrité en aval (un client écarté laisse-t-il des contrats orphelins ?) : [À COMPLÉTER]
+Effet de la quarantaine sur l'intégrité en aval : oui, un client écarté laisse des contrats orphelins, que la porte G écarte à leur tour (effet domino). Sur les 1 595 contrats rejetés par RQ-012, 1 000 étaient déjà orphelins en bronze (S3), mais **595** ont un souscripteur présent en bronze et mis en quarantaine en silver (pays hors référentiel ou type de personne invalide). De même, RQ-013 écarte 657 contrats contre 300 orphelins en bronze, et **2 308** sinistres sont écartés uniquement parce que leur contrat a été rejeté en amont. C'est pourquoi RQ-012 et RQ-013 se dégradent de bronze à silver (99,0 % → 98,4 % ; 99,7 % → 99,3 %). Le gold reste cohérent (0 orphelin), mais au prix de lignes perdues : corriger à la source les 650 clients en quarantaine récupérerait jusqu'à 595 contrats et les sinistres qui en dépendent.
 
 ## 5. Traçabilité de trois données (US-28)
 
