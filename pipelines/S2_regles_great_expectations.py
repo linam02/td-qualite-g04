@@ -64,7 +64,10 @@ def mostly(rule_id):
 # %% Great Expectations : le flux de base (contexte fichier, source, batch, suite, checkpoint, Data Docs)
 # Le projet gx/ vit dans reports/ge : il est donc conservé hors du conteneur.
 context = gx.get_context(mode="file", project_root_dir=f"{DOSSIER}/ge")
-source = context.sources.add_or_update_pandas(name="mariadb_df")
+try:
+    source = context.get_datasource("mariadb_df")
+except LookupError:
+    source = context.sources.add_pandas(name="mariadb_df")
 
 def asset(nom):
     """Un actif par table : réutilisé si la cellule est relancée."""
