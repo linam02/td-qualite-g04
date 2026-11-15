@@ -1,10 +1,10 @@
 # S3 · Soda Core : intégrité entre tables, portes en SodaCL
 
-Groupe : g04  ·  Date : 13/11/2026  ·  Rédacteur : [À COMPLÉTER]  ·  Étiquette : `seance-3`
+Groupe : g04  ·  Date : 13/11/2026  ·  Rédacteur : Lina Merazga  ·  Étiquette : `seance-3`
 
 Un constat = un chiffre mesuré (règle, couche) + la preuve qui le reproduit + ce que cela change. Voir `README.md`.
 
-**Preuve commune** : `pipelines/S3_integrite_soda.py` (relançable de bout en bout : `docker exec -it dq_jupyter python pipelines/S3_integrite_soda.py`), lot `L-2026-10-01`, couche BRONZE. Rôles en S3 : Data Owner = Amadou Macka Diallo ; Data Steward, Ingénieur qualité, Rédacteur : [À COMPLÉTER].
+**Preuve commune** : `pipelines/S3_integrite_soda.py` (relançable de bout en bout : `docker exec -it dq_jupyter python pipelines/S3_integrite_soda.py`), lot `L-2026-10-01`, couche BRONZE. Rôles en S3 : Data Owner = Amadou Macka Diallo ; Data Steward = LE Thi Quynh ; Ingénieurs qualité = Fatine Mourid et Lyse Ndifo ; Rédacteur = Lina Merazga.
 
 ## 1. Checks et configuration (US-12)
 
