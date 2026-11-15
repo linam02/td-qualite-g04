@@ -13,5 +13,23 @@ Une ligne par décision de seuil, de sévérité, de définition ou de règle de
 | 7 | 13/11/2026 | S3 | RQ-015, RQ-016 : statut de personne | En silver, un `prospect` qui détient au moins un contrat devient `souscripteur`, avec pour date d'effet le début de son premier contrat ; un souscripteur sans contrat n'est pas rétrogradé automatiquement, il est signalé à la direction commerciale | RQ-015 : 479 prospects titulaires de 1 à 5 contrats (ex. A-35996, 5 contrats depuis 2019) ; RQ-016 : 955 souscripteurs sans contrat sur 49 898 (98,086 %, au-dessus du seuil de 98 %) | Data Owner (Amadou Macka Diallo), sur proposition du Data Steward | Mettre les 479 en quarantaine : écarté, ils ont de vrais contrats et sortiraient à tort du client actif |
 | 8 | 13/11/2026 | S3 | RQ-018 : définition unique du client actif | La définition CD-001 (contrat en cours au 01/10/2026 ET cotisation depuis le 01/07/2026) est la seule définition du client actif ; les trois directions interrogent la vue `dq.v_client_actif_bronze`, republiée en gold (`gold.v_client_actif`) en S4 | Trois chiffres en S1 (50 508, 44 116, 38 049) ; avec la vue unique, 38 049 pour les trois directions ; écart Soda Commerciale − CD-001 : 11 878 (seuil d'échec 5 000) | Data Owner (Amadou Macka Diallo) | Garder la définition Commerciale (au moins un contrat) : écarté, elle compte 12 459 clients sans contrat en cours ou sans cotisation à jour |
 | 9 | 13/11/2026 | S3 | RQ-017 : sinistre hors période de garantie | RQ-017 reste bloquante. Les 344 sinistres couverts par un autre contrat du même souscripteur sont à rattacher au bon contrat (gestion des sinistres) ; les 856 autres vont en quarantaine en silver, sans paiement avant vérification | 1 200 sinistres hors période sur 100 000 (98,8 %), dont 344 tombent dans la période d'un autre contrat du même client (`pipelines/S3_integrite_soda.py`, US-19) | Data Owner (Amadou Macka Diallo) | Accepter automatiquement les 344 comme conformes : écarté, le rattachement au contrat doit être corrigé à la source |
-| 10 | … | … | … | … | … | … | … |
 Ajoutez des lignes autant que nécessaire. Exemples de décisions attendues : sévérité d'une règle, seuil d'avertissement, définition unique du client actif, convention de la valeur sentinelle, seuils de rapprochement, règle de survie par attribut, seuil de la porte G.
+## Propositions de décisions à valider - S4/S5
+
+Ces propositions ne constituent pas des décisions approuvées. Elles nécessitent une validation formelle du Data Owner.
+
+| Séance | Objet | Proposition | Justification chiffrée | Rôle sollicité | Alternative à examiner |
+|---|---|---|---|---|---|
+| S4 | US-24 - Seuils de rapprochement | Confirmer le seuil automatique de 85/100 et le seuil de revue de 70/100 | 2 782 840 paires candidates ; 19 505 paires automatiques ; 2 120 paires non fusionnées ; précision et rappel de 100 % sur les paires étiquetées exploitables | Data Owner | Seuil 90 : rappel de 91 % |
+| S4 | US-25 - Règle de survie | Valider la priorité CIF puis CRM, avec sélection de la première valeur non nulle | 139 350 correspondances ; 120 480 CLI distincts ; 0 correspondance orpheline ; 0 client sans xref ; 0 CLI dupliqué | Data Owner | Priorité CRM à évaluer |
+| S5 | RQ-014 - Rapprochement BAN | Arbitrer le traitement des adresses non rapprochées et le périmètre de certification | 11 871 adresses non rapprochées sur 100 000 ; 7 957 resteraient non rapprochées après corrections simulées ; mesure Silver RQ-014 absente | Data Owner | Maintien du blocage ou dérogation formalisée |
+| S5 | Certification et publication CRM | Statuer sur l'autorisation métier de publication compte tenu de la réserve RQ-014 | 36/36 contrôles bloquants mesurés conformes ; 3 refus de publication vérifiés ; 312 878 lignes réconciliées | Data Owner | NO_GO jusqu'à couverture complète des règles bloquantes |
+
+**Recommandation du groupe - 15/11/2026 : NO-GO métier proposé.**
+
+La règle RQ-014 est bloquante à la porte S avec un seuil de 100 %. L'analyse BAN sur 100 000 adresses Silver donne 11 871 adresses non reconnues, soit 88,129 % de conformité avant correction. Les 3 914 corrections proposées ne sont pas appliquées et aucune mesure RQ-014 n'est historisée dans `dq.dq_history`.
+
+Le certificat `CERT-S1_G04_001` indique un GO technique fondé sur les 36 mesures bloquantes disponibles, sans vérifier la couverture complète des règles obligatoires. La publication CRM a été réalisée techniquement et 312 878 lignes ont été réconciliées ; cela ne constitue pas une validation métier.
+
+Le groupe recommande de suspendre toute nouvelle publication métier tant que RQ-014 n'est pas résolue et remesurée, ou qu'un arbitrage formel du Data Owner n'a pas été documenté. Cette recommandation n'est pas une décision approuvée.
+**Statut :** en attente de validation formelle du Data Owner.
