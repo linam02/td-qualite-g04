@@ -1,10 +1,10 @@
 # S4 · PySpark : construire silver puis gold
 
-Groupe : g04  ·  Date : 13/11/2026  ·  Rédacteur : Amadou Macka Diallo  ·  Étiquette : `seance-4`
+Groupe : g04  ·  Date : 13/11/2026  ·  Rédacteurs : Amadou Macka Diallo, LE Thi Quynh  ·  Étiquette : `seance-4`
 
 Un constat = un chiffre mesuré (règle, couche) + la preuve qui le reproduit + ce que cela change. Voir `README.md`.
 
-**Preuve commune** : `pipelines/S4_silver_gold.py` (relançable de bout en bout : `docker exec -it dq_jupyter python pipelines/S4_silver_gold.py`), lot `L-2026-10-01`. Rôles en S4 : Rédacteur = Amadou Macka Diallo ; Data Owner, Data Steward, Ingénieur qualité : [À COMPLÉTER].
+**Preuve commune** : `pipelines/S4_silver_gold.py` (relançable de bout en bout : `docker exec -it dq_jupyter python pipelines/S4_silver_gold.py`), lot `L-2026-10-01`. Rôles en S4 : Data Owner = Lyse Ndifo ; Data Steward = Fatine Mourid ; Ingénieur qualité = Lina Merazga ; Rédacteurs = Amadou Macka Diallo et LE Thi Quynh.
 
 ## 1. Silver et quarantaine (US-21, US-22)
 

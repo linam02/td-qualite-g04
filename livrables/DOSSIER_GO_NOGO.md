@@ -1,6 +1,6 @@
 # Dossier go/no-go : migration des données consolidées vers le CRM
 
-Groupe : g04  ·  Date de remise : [À COMPLÉTER]  ·  Étiquette : `rendu-final`
+Groupe : g04  ·  Date de remise : 15/11/2026  ·  Étiquette : `rendu-final`
 
 Destinataire : la Directrice Générale. Registre : un rapport court, sans jargon, quatre pages au plus hors annexes. Chaque chiffre renvoie à une preuve du dépôt (livrable de séance, requête, fichier).
 
@@ -50,20 +50,20 @@ Hypothèses à faire valider par le métier (listez-les, ne les cachez pas) :
 
 ## 4. La décision
 
-Seuils retenus et leur justification devant le Data Owner (renvoi vers `JOURNAL_DECISIONS.md`, numéros) : sévérités et seuils des règles confirmés (n° 2) ; correction de `type_personne` (n° 3) ; âge calculé à la date de signature (n° 4) ; quarantaine des durées hors catalogue (n° 5) ; valeur `0` de l'assuré (n° 6) ; statuts de personne (n° 7) ; définition unique du client actif CD-001 (n° 8) ; sinistres hors garantie (n° 9) ; [À COMPLÉTER : décisions de S4 et S5, seuils de fusion et règle de survie].
+Seuils retenus et leur justification devant le Data Owner (renvoi vers `JOURNAL_DECISIONS.md`, numéros) : sévérités et seuils des règles confirmés (n° 2) ; correction de `type_personne` (n° 3) ; âge calculé à la date de signature (n° 4) ; quarantaine des durées hors catalogue (n° 5) ; valeur `0` de l'assuré (n° 6) ; statuts de personne (n° 7) ; définition unique du client actif CD-001 (n° 8) ; sinistres hors garantie (n° 9) ; seuils de fusion 85 et 70 (n° 10) ; règle de survie CIF puis CRM (n° 11) ; signature du certificat et recommandation (n° 12) ; acceptation des écarts connus RQ-003 et RQ-014 (n° 13).
 
-Rôles : qui décide, qui contrôle, qui exécute la migration : le Data Owner décide et signe le certificat ; le Data Steward contrôle les règles, les quarantaines et les corrections ; l'Ingénieur qualité exécute la chaîne et la publication, qui ne part que si le certificat est valide. [À COMPLÉTER : noms]
+Rôles : qui décide, qui contrôle, qui exécute la migration : le Data Owner décide et signe le certificat ; le Data Steward contrôle les règles, les quarantaines et les corrections ; l'Ingénieur qualité exécute la chaîne et la publication, qui ne part que si le certificat est valide. En S5 : Data Owner Lina Merazga ; Data Steward LE Thi Quynh ; Ingénieurs qualité Amadou Macka Diallo et Lyse Ndifo.
 
 Conditions à lever avant migration, avec échéance et responsable :
 
 | Condition | Responsable | Échéance |
 |---|---|---|
-| Appliquer les décisions n° 3 et n° 7 dans le traitement, puis réémettre le certificat | Ingénieur qualité, validation par le Data Steward | [À COMPLÉTER] |
-| Mesurer RQ-014 sur silver et traiter les adresses de sinistre non reconnues (priorité à la ressaisie manuelle) | Data Steward, gestion des sinistres | [À COMPLÉTER] |
-| Rendre le téléphone obligatoire à la saisie et lancer une collecte auprès des 4 692 clients concernés | Direction commerciale | [À COMPLÉTER] |
-| Examiner les 8 263 lignes en quarantaine et décider de leur correction ou de leur abandon | Data Steward, gestion des contrats | [À COMPLÉTER] |
+| Appliquer les décisions n° 3 et n° 7 dans le traitement, puis réémettre le certificat | Ingénieur qualité, validation par le Data Steward | 30/11/2026 |
+| Mesurer RQ-014 sur silver et traiter les adresses de sinistre non reconnues (priorité à la ressaisie manuelle) | Data Steward, gestion des sinistres | 15/12/2026 |
+| Rendre le téléphone obligatoire à la saisie et lancer une collecte auprès des 4 692 clients concernés | Direction commerciale | 15/02/2027 |
+| Examiner les 8 263 lignes en quarantaine et décider de leur correction ou de leur abandon | Data Steward, gestion des contrats | 15/01/2027 |
 
-Signature du Data Owner (nom, rôle, date) : [À COMPLÉTER]
+Signature du Data Owner (nom, rôle, date) : Lina Merazga, Data Owner (S5), 15/11/2026
 
 ## Annexes
 
