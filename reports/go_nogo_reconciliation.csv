@@ -1,4 +1,0 @@
-id,batch_id,couche,rule_id,table_cible,nb_testees,nb_echecs,taux_conformite,mesure_le
-77,S1_G04_001,CRM,RQ-025,client,120480,0,100.000,2026-11-15 19:08:44
-78,S1_G04_001,CRM,RQ-025,contrat,95866,0,100.000,2026-11-15 19:08:44
-79,S1_G04_001,CRM,RQ-025,sinistre,96532,0,100.000,2026-11-15 19:08:44

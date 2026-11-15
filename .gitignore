@@ -24,3 +24,4 @@ __pycache__/
 # Système
 .DS_Store
 Thumbs.db
+/reports/go_nogo_*.csv
