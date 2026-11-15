@@ -1,6 +1,6 @@
 # S3 · Soda Core : intégrité entre tables, portes en SodaCL
 
-Groupe : g04  ·  Date : 13/11/2026  ·  Rédacteur : [À COMPLÉTER]  ·  Étiquette : `seance-3`
+Groupe : g04  ·  Date : 13/11/2026  ·  Rédacteur : Lina Merazga·  Étiquette : `seance-3`
 
 Un constat = un chiffre mesuré (règle, couche) + la preuve qui le reproduit + ce que cela change. Voir `README.md`.
 
